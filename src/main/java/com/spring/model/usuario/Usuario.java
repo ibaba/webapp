@@ -9,6 +9,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.spring.config.annotation.form.Form;
+import com.spring.config.annotation.form_control.Input;
+import com.spring.config.annotation.form_control.Select;
 import com.spring.config.generic.persistence.Model;
 import com.spring.model.role.Role;
 
@@ -24,18 +26,24 @@ public class Usuario extends Model {
 	@Id
 	private Integer id;
 	
+	@Input(label = "Login")
 	private String login;
 	
+	@Input(label = "Senha")
 	private String senha;
 	
+	@Input(label = "Nome")
 	private String nome;
 	
+	@Input(label = "Sobrenome")
 	private String sobrenome;
 	
+	@Input(label = "E-mail")
 	private String email;
 	
 	@ManyToMany
 	@JoinTable(name="role_members", joinColumns={@JoinColumn(name="fk_user")}, inverseJoinColumns={@JoinColumn(name="fk_role")})
+	@Select(classe = Role.class, label = "Autoriza&ccedil&otilde;es")
 	private List<Role> role;
 
 	public Integer getId() {
