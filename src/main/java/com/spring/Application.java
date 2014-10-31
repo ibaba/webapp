@@ -35,4 +35,14 @@ public class Application {
 		return "public/index";
 	}
 	
+	@RequestMapping(value = "/profile")
+	public String profile(Model model) {
+		return "private/profile";
+	}
+	
+	@RequestMapping(value = "/settings")
+	public String settings(Model model) {
+		return "private/settings";
+	}
+	
 }
