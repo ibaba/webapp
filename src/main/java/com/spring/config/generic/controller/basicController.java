@@ -47,11 +47,9 @@ public class basicController<E> {
 	}
 	
 	@RequestMapping(value = "remover/{id}")
-	@ResponseBody
 	public String remocao(Model model, @PathVariable("id") String id) {
-		Object remover = serv.getObject(Integer.valueOf(id));
-		model.addAttribute("command", remover);
-		return "Confirma remo&ccedil;&atilde;o do registro <strong>"+remover+"</strong>";
+		model.addAttribute("command", serv.getObject(Integer.valueOf(id)));
+		return "private/form";
 	}
 	
 	@RequestMapping(value = "insert", method=RequestMethod.POST)
