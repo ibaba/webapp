@@ -8,10 +8,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.spring.config.annotation.form.Form;
+import com.spring.config.generic.persistence.Model;
 import com.spring.model.role.Role;
 
 @Entity
-public class Usuario {
+@Form(classe = Usuario.class)
+public class Usuario extends Model {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	private Integer id;
@@ -84,6 +92,11 @@ public class Usuario {
 
 	public void setRole(List<Role> role) {
 		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return nome + " " + sobrenome;
 	}
 	
 }
