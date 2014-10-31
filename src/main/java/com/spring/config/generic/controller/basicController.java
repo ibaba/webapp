@@ -26,7 +26,7 @@ public class basicController<E> {
 	
 	@RequestMapping(value = "index")
 	@PreAuthorize("hasPermission(#user, 'listagem_'+#this.this.name)")
-	public String index(Model model) throws Exception {
+	public String index(Model model) {
 		model.addAttribute("classe", getName());
 		model.addAttribute("header", serv.header());
 		return "private/index";

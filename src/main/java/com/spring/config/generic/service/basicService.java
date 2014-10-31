@@ -52,17 +52,15 @@ public class basicService<E> {
 		return dao.findAll();
 	}
 	
-	public List<String> header() throws Exception {
+	public List<String> header() {
 		List<String> ret = new ArrayList<String>();
 		
 		List<Field> lista = Arrays.asList(clazz.getDeclaredFields());
 		for(int i=0; i<lista.size(); i++) {
-			System.out.println(lista.get(i).getName());
 			if(lista.get(i).isAnnotationPresent(Input.class))
 				ret.add(lista.get(i).getName());
 		}
 		
-		System.out.println(ret);
 		return ret;
 	}
 	
