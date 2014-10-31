@@ -28,9 +28,10 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <c:forEach var="item" items="${menu}">
+            	<c:url value="/${item['class'].simpleName}/index" var="url"/>
+            	<li><a class="popup" href="${url}">${item['class'].simpleName}</a></li>
+            </c:forEach>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           	<li class="dropdown">
@@ -48,10 +49,11 @@
 
     <div class="container">
 
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
+      <c:forEach var="item" items="${menu}">
+		<div class="dialog" id="${item['class'].simpleName}" title="Basic dialog">
+		  <span class="content"></span>
+		</div>
+      </c:forEach>
 
     </div><!-- /.container -->
 
@@ -62,5 +64,25 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <script>
+    $(document).ready(function(){
+    	$(document).on("click", "a.popup", function(event){
+    		event.preventDefault();
+    		$.get($(this).attr("href"), function(data){
+    			var $temp  = $('<div/>', {html:data});
+    			var dialog_box = $( '#'+$(this).text() );
+    			$(dialog_box).dialog();
+    			$(dialog_box).find('.text').empty();
+    			$(dialog_box).find('.text').html( $temp.remove('head').html() );
+    			$(dialog_box).dialog('option', 'title', $temp.find('title').text());
+    			$(dialog_box).dialog('option', 'minWidth', '640');
+    			$(dialog_box).dialog('option', 'minHeight', '480');
+    			$(dialog_box).dialog( "open" );
+    		});
+    	});
+    });
+    </script>
+    
   </body>
 </html>
