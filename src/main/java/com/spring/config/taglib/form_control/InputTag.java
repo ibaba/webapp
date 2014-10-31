@@ -2,6 +2,7 @@ package com.spring.config.taglib.form_control;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import com.spring.config.annotation.form_control.Input;
@@ -48,7 +49,14 @@ public class InputTag extends SimpleTagSupport {
 	
 	public Object value() throws Exception {
 		Object object = getJspContext().findAttribute("command");
-		return object.getClass().getMethod("get"+field().getName()).invoke(object);
+		return object.getClass().getMethod("get"+caps(field().getName())).invoke(object);
+	}
+	
+	private String caps(String string) {
+		char[] charArray = string.toCharArray();
+		charArray[0] = Character.toUpperCase(charArray[0]);
+		String Key = new String(charArray);
+		return Key;
 	}
 	
 }

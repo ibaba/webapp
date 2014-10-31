@@ -42,7 +42,14 @@ public class RadiobuttonTag extends SimpleTagSupport {
 	
 	public Boolean value() throws Exception {
 		Object object = getJspContext().findAttribute("command");
-		return (Boolean) object.getClass().getMethod("get"+field().getName()).invoke(object);
+		return (Boolean) object.getClass().getMethod("get"+caps(field().getName())).invoke(object);
+	}
+	
+	private String caps(String string) {
+		char[] charArray = string.toCharArray();
+		charArray[0] = Character.toUpperCase(charArray[0]);
+		String Key = new String(charArray);
+		return Key;
 	}
 	
 }
