@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <c:forEach var="item" items="${menu}">
-            	<c:url value="/${item['class'].simpleName}/index" var="url"/>
+            	<c:url value="/${item.simpleName}/index" var="url"/>
             	<li><a class="popup" href="${url}">${item['class'].simpleName}</a></li>
             </c:forEach>
           </ul>
@@ -50,7 +50,7 @@
     <div class="container">
 
       <c:forEach var="item" items="${menu}">
-		<div class="dialog" id="${item['class'].simpleName}" title="Basic dialog">
+		<div class="dialog" id="${item.simpleName}" title="Basic dialog">
 		  <span class="content"></span>
 		</div>
       </c:forEach>
