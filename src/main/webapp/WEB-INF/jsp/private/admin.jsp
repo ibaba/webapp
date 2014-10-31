@@ -73,8 +73,8 @@
     			var $temp  = $('<div/>', {html:data});
     			var dialog_box = $( '#'+$(this).data("target") );
     			$(dialog_box).dialog();
-    			$(dialog_box).find('.text').empty();
-    			$(dialog_box).find('.text').html( $temp.remove('head').html() );
+    			$(dialog_box).find('.content').empty();
+    			$(dialog_box).find('.content').html( $temp.remove('head').html() );
     			$(dialog_box).dialog('option', 'title', $temp.find('title').text());
     			$(dialog_box).dialog('option', 'minWidth', '640');
     			$(dialog_box).dialog('option', 'minHeight', '480');
