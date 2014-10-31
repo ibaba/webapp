@@ -30,7 +30,7 @@
           <ul class="nav navbar-nav">
             <c:forEach var="item" items="${menu}">
             	<c:url value="/${item.simpleName}/index" var="url"/>
-            	<li><a class="popup" href="${url}">${item['class'].simpleName}</a></li>
+            	<li><a class="popup" href="${url}">${item.simpleName}</a></li>
             </c:forEach>
           </ul>
           <ul class="nav navbar-nav navbar-right">
