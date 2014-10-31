@@ -27,7 +27,13 @@ public class FormTag extends TagSupport {
 	public int doStartTag() {
 		JspWriter out = pageContext.getOut();
 		try {
-			out.println("<form class=\"form\" role=\"form\" method=\"post\" action=\"\">");
+			String action = new String();
+			Object command = pageContext.findAttribute("command");
+			if(command.getClass().getMethod("getId").invoke(command) == null)
+				action = pageContext.getServletContext().getContextPath() + "/insert";
+			else
+				action = pageContext.getServletContext().getContextPath() + "/update";
+			out.println("<form class=\"form\" role=\"form\" method=\"post\" action=\""+action+"\">");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
