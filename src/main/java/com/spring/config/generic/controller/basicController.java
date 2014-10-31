@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spring.config.annotation.form_action.Item;
+import com.spring.config.annotation.form_action.Menu;
 import com.spring.config.generic.service.basicService;
 
 public class basicController<E> {
@@ -28,12 +30,15 @@ public class basicController<E> {
 	@PreAuthorize("hasPermission(#user, 'listagem_'+#this.this.name)")
 	public String index(Model model) {
 		model.addAttribute("classe", getName());
-		model.addAttribute("header", serv.header());
+		model.addAttribute("colunas", serv.header());
+		model.addAttribute("menu", serv.menu(this.getClass()));
+		model.addAttribute("item", serv.item(this.getClass()));
 		return "private/index";
 	}
 	
 	@RequestMapping(value = "cadastrar")
 	@PreAuthorize("hasPermission(#user, 'cadastra_'+#this.this.name)")
+	@Menu
 	public String cadastro(Model model) throws Exception {
 		model.addAttribute("command", serv.newObject());
 		return "private/form";
@@ -41,6 +46,7 @@ public class basicController<E> {
 	
 	@RequestMapping(value = "alterar/{id}")
 	@PreAuthorize("hasPermission(#user, 'altera_'+#this.this.name)")
+	@Item
 	public String alteracao(Model model, @PathVariable("id") String id) {
 		model.addAttribute("command", serv.getObject(Integer.valueOf(id)));
 		return "private/form";
@@ -48,6 +54,7 @@ public class basicController<E> {
 	
 	@RequestMapping(value = "remover/{id}")
 	@PreAuthorize("hasPermission(#user, 'remove_'+#this.this.name)")
+	@Item
 	public String remocao(Model model, @PathVariable("id") String id) {
 		model.addAttribute("command", serv.getObject(Integer.valueOf(id)));
 		return "private/form";
