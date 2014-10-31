@@ -44,12 +44,16 @@ public class basicService<E> {
 		return (E) dao.findById(id);
 	}
 	
-	public String getName() {
-		return clazz.getSimpleName();
-	}
-	
 	public List<?> lista() {
 		return dao.findAll();
+	}
+	
+	public List<String> header() {
+		return null;
+	}
+	
+	public String getName() {
+		return clazz.getSimpleName();
 	}
 	
 }
