@@ -1,6 +1,5 @@
 package com.spring.config.taglib.form;
 
-import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -28,8 +27,8 @@ public class FormTag extends TagSupport {
 	public int doStartTag() {
 		JspWriter out = pageContext.getOut();
 		try {
-			out.println("<form>");
-		} catch (IOException e) {
+			out.println("<form class=\"form\" role=\"form\" method=\"post\" action=\"\">");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return EVAL_BODY_INCLUDE;
