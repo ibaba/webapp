@@ -47,6 +47,7 @@ public class basicController<E> {
 	}
 	
 	@RequestMapping(value = "remover/{id}")
+	@PreAuthorize("hasPermission(#user, 'remove_'+#this.this.name)")
 	public String remocao(Model model, @PathVariable("id") String id) {
 		model.addAttribute("command", serv.getObject(Integer.valueOf(id)));
 		return "private/form";
