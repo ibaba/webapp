@@ -2,6 +2,7 @@ package com.spring.config.generic.service;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,15 +53,17 @@ public class basicService<E> {
 	}
 	
 	public List<String> header() throws Exception {
-		List<String> lista = new ArrayList<String>();
+		List<String> ret = new ArrayList<String>();
 		
-		Field fields[] = newObject().getClass().getDeclaredFields();
-		for(int i=0; i<fields.length; i++) {
-			if(fields[i].isAnnotationPresent(Input.class))
-				lista.add(fields[i].getName());
+		List<Field> lista = Arrays.asList(clazz.getDeclaredFields());
+		for(int i=0; i<lista.size(); i++) {
+			System.out.println(lista.get(i).getName());
+			if(lista.get(i).isAnnotationPresent(Input.class))
+				ret.add(lista.get(i).getName());
 		}
 		
-		return lista;
+		System.out.println(ret);
+		return ret;
 	}
 	
 	public String getName() {
