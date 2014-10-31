@@ -8,6 +8,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.spring.config.annotation.form_control.Input;
+import com.spring.config.annotation.form_control.Select;
 import com.spring.model.permission.Permission;
 
 @Entity
@@ -16,10 +21,13 @@ public class Role {
 	@Id
 	private Integer id;
 	
+	@Input(label = "Nome")
 	private String nome;
 	
 	@ManyToMany
 	@JoinTable(name="role_permissions", joinColumns={@JoinColumn(name="fk_role")}, inverseJoinColumns={@JoinColumn(name="fk_permission")})
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@Select(classe = Permission.class, label = "Permiss&otilde;es")
 	private List<Permission> permission;
 
 	public Integer getId() {

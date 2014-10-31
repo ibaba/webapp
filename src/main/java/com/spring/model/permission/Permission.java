@@ -3,12 +3,15 @@ package com.spring.model.permission;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.spring.config.annotation.form_control.Input;
+
 @Entity
 public class Permission {
 
 	@Id
 	private Integer id;
 	
+	@Input(label = "Nome")
 	private String nome;
 
 	public Integer getId() {

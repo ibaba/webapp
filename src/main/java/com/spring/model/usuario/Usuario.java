@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.spring.config.annotation.form.Form;
 import com.spring.config.annotation.form_control.Input;
 import com.spring.config.annotation.form_control.Select;
@@ -43,6 +46,7 @@ public class Usuario extends Model {
 	
 	@ManyToMany
 	@JoinTable(name="role_members", joinColumns={@JoinColumn(name="fk_user")}, inverseJoinColumns={@JoinColumn(name="fk_role")})
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@Select(classe = Role.class, label = "Autoriza&ccedil&otilde;es")
 	private List<Role> role;
 
