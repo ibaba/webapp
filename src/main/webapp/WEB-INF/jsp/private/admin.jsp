@@ -30,7 +30,7 @@
           <ul class="nav navbar-nav">
             <c:forEach var="item" items="${menu}">
             	<c:url value="/${item.simpleName}/index" var="url"/>
-            	<li><a class="popup" href="${url}">${item.simpleName}</a></li>
+            	<li><a class="popup" data-target="${item.simpleName}" href="${url}">${item.simpleName}</a></li>
             </c:forEach>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -71,7 +71,7 @@
     		event.preventDefault();
     		$.get($(this).attr("href"), function(data){
     			var $temp  = $('<div/>', {html:data});
-    			var dialog_box = $( '#'+$(this).text() );
+    			var dialog_box = $( '#'+$(this).data("target") );
     			$(dialog_box).dialog();
     			$(dialog_box).find('.text').empty();
     			$(dialog_box).find('.text').html( $temp.remove('head').html() );
