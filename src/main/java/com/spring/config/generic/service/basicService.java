@@ -1,10 +1,13 @@
 package com.spring.config.generic.service;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.spring.config.annotation.form_control.Input;
 import com.spring.config.generic.persistence.Dao;
 
 public class basicService<E> {
@@ -48,8 +51,16 @@ public class basicService<E> {
 		return dao.findAll();
 	}
 	
-	public List<String> header() {
-		return null;
+	public List<String> header() throws Exception {
+		List<String> lista = new ArrayList<String>();
+		
+		Field fields[] = newObject().getClass().getDeclaredFields();
+		for(int i=0; i<fields.length; i++) {
+			if(fields[i].isAnnotationPresent(Input.class))
+				lista.add(fields[i].getName());
+		}
+		
+		return lista;
 	}
 	
 	public String getName() {
