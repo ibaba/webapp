@@ -7,45 +7,44 @@
   </head>
   <body>
 
-<div class="content">
-	<div class="panel panel-default">
-	  <div class="panel-heading">${classe}</div>
-	  <div class="panel-body">
-	    <c:forEach var="item" items="${menu}">
-	    	<sec:authorize access="hasPermission(#user, '${item}_${classe}')">
-	    		<c:url value="/${classe}/${item}" var="action"/>
-	    		<button type="button" class="btn btn-default link" data-action="${action}">${item}</button>
-	    	</sec:authorize>
-	    </c:forEach>
-	  </div>
-	  <table class="table">
-	  	<thead>
-		  	<tr>
-		  		<th>#</th>
-		  		<c:forEach var="item" items="${colunas}">
-		  			<th>${item}</th>
-		  		</c:forEach>
-		  		<th>...</th>
-		  	</tr>
-	  	</thead>
-	  	
-	  	<tbody>
-	  		<tr>
-	  			<td></td>
-	  		</tr>
-	  	</tbody>
-	  	
-	  	<tfoot>
-	  		<tr>
-	  			<td></td>
-	  			<c:forEach var="item" items="${colunas}">
-	  				<td>${item}</td>
-	  			</c:forEach>
-	  			<td></td>
-	  		</tr>
-	  	</tfoot>  	
-	  </table>
-	</div>
+<div class="panel panel-default">
+  <div class="panel-heading">${classe}</div>
+  <div class="panel-body">
+    <c:forEach var="item" items="${menu}">
+    	<sec:authorize access="hasPermission(#user, '${item}_${classe}')">
+    		<c:url value="/${classe}/${item}" var="action"/>
+    		<button type="button" class="btn btn-default link" data-action="${action}">${item}</button>
+    	</sec:authorize>
+    </c:forEach>
+  </div>
+  <table class="table">
+  	<thead>
+	  	<tr>
+	  		<th>#</th>
+	  		<c:forEach var="item" items="${colunas}">
+	  			<th>${item}</th>
+	  		</c:forEach>
+	  		<th>...</th>
+	  	</tr>
+  	</thead>
+  	
+  	<tbody class="content">
+  		<tr>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  	
+  	<tfoot>
+  		<tr>
+  			<td></td>
+  			<c:forEach var="item" items="${colunas}">
+  				<td>${item}</td>
+  			</c:forEach>
+  			<td></td>
+  		</tr>
+  	</tfoot>  	
+  </table>
+</div>
 
 <div style="display: none;">
 	<c:forEach var="item" items="${item}">
@@ -58,6 +57,8 @@
 
 <script>
 $(document).ready(function(){
+	$("tbody.content").empty();
+	
 	var atributos = [];
 	$("thead").find("th").each(function(){
 		atributos.push($(this).text());
@@ -84,7 +85,7 @@ $(document).ready(function(){
 				else
 					row.append('<td>'+item[atributos[i]]+'</td>');
 			}
-			$("tbody").append(row);
+			$("tbody.content").append(row);
 		});
 	});
 	
@@ -96,13 +97,12 @@ $(document).ready(function(){
 			url: link
 		}).done(function(data){
 			var $temp  = $('<div/>', {html:data});
-			$(".content").empty();
-			$(".content").html( $temp.remove('head').html() );
+			$(".panel-default").empty();
+			$(".panel-default").html( $temp.remove('head').html() );
 		});
 	});
 });
 </script>
-</div>
 
   </body>
 </html>

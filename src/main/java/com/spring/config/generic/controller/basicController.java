@@ -61,16 +61,19 @@ public class basicController<E> {
 	}
 	
 	@RequestMapping(value = "insert", method=RequestMethod.POST)
+	@ResponseBody
 	public void cadastro(@ModelAttribute("object") E object) {
 		serv.insert(object);
 	}
 	
 	@RequestMapping(value = "update", method=RequestMethod.POST)
+	@ResponseBody
 	public void alteracao(@ModelAttribute("object") E object) {
 		serv.update(object);
 	}
 	
 	@RequestMapping(value = "delete", method=RequestMethod.POST)
+	@ResponseBody
 	public void remocao(@ModelAttribute("object") E object) {
 		serv.remove(object);
 	}
