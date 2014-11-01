@@ -65,7 +65,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
-    <script src="${pageContext.servletContext.contextPath}/static/js/jquery.form.min.js"></script>
     <script src="${pageContext.servletContext.contextPath}/static/js/page_link.js"></script>
     <script src="${pageContext.servletContext.contextPath}/static/js/page_load.js"></script>
     <script src="${pageContext.servletContext.contextPath}/static/js/form_submit.js"></script>
