@@ -1,6 +1,10 @@
-$("form.form").each(function(){
-	var form = this;
-	$(form).ajaxForm(function(data) { 
+$(document).on('submit', '.form', function (event) {
+	event.preventDefault();
+
+	var $form = $( this ), url = $form.attr( "action" );
+	
+	var posting = $.post( url, $(this).serialize() );
+	posting.done(function( data ) {
 	    if(data == "") {
 	    	$(".alert-success").show();
 	    } else {
@@ -8,5 +12,9 @@ $("form.form").each(function(){
 	    	$(".alert-danger").empty();
 	    	$(".alert-danger").html( $temp.remove('head').html() );
 	    }
+		
+		$(".form").each (function(){
+			this.reset();
+		});
 	});
 });
