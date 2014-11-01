@@ -15,6 +15,7 @@ import com.spring.config.annotation.form.Form;
 import com.spring.config.annotation.form_control.Input;
 import com.spring.config.annotation.form_control.Select;
 import com.spring.config.generic.persistence.Model;
+
 import com.spring.model.role.Role;
 
 @Entity

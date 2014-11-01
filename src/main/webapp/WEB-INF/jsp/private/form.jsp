@@ -15,25 +15,25 @@
 <x:Form>
 	<c:forEach var="item" items="${command['class'].declaredFields}" varStatus="status">
 		<h3>${item.name}</h3>
-		<c:forEach var="item2" items="${item['class'].annotations}">
-			<h4>${item2.name}</h4>
+		<c:forEach var="item2" items="${item.declaredAnnotations}">
+			<h4>${item2}</h4>
 			<c:choose>
-				<c:when test="${item2['class'].simpleName == 'Checkbox'}">
+				<c:when test="${item2['proxyClass'].simpleName == 'Checkbox'}">
 					<x:Checkbox/>
 				</c:when>
-				<c:when test="${item2['class'].simpleName == 'DataList'}">
+				<c:when test="${item2['proxyClass'].simpleName == 'DataList'}">
 					<x:DataList/>
 				</c:when>
-				<c:when test="${item2['class'].simpleName == 'Input'}">
+				<c:when test="${item2['proxyClass'].simpleName == 'Input'}">
 					<x:Input/>
 				</c:when>
-				<c:when test="${item2['class'].simpleName == 'Radiobutton'}">
+				<c:when test="${item2['proxyClass'].simpleName == 'Radiobutton'}">
 					<x:Radiobutton/>
 				</c:when>
-				<c:when test="${item2['class'].simpleName == 'Select'}">
+				<c:when test="${item2['proxyClass'].simpleName == 'Select'}">
 					<x:Select/>
 				</c:when>
-				<c:when test="${item2['class'].simpleName == 'Textarea'}">
+				<c:when test="${item2['proxyClass'].simpleName == 'Textarea'}">
 					<x:Textarea/>
 				</c:when>
 			</c:choose>
@@ -43,7 +43,7 @@
 	<button type="submit" class="btn btn-default">Enviar</button>
 </x:Form>
 
-<div class="alert alert-success" role="alert" style="display: none;">${command['class'].simpleName} enviado com sucesso!</div>
+<div class="alert alert-success" role="alert" style="display: none;">Formul&aacute;rio enviado com sucesso!</div>
 <div class="alert alert-danger" role="alert" style="display: none;">...</div>
 
 <script>
