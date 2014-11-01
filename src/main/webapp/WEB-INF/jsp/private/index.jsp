@@ -7,43 +7,45 @@
   </head>
   <body>
 
-<div class="panel panel-default">
-  <div class="panel-heading">${classe}</div>
-  <div class="panel-body">
-    <c:forEach var="item" items="${menu}">
-    	<sec:authorize access="hasPermission(#user, '${item}_${classe}')">
-    		<c:url value="/${classe}/${item}" var="action"/>
-    		<button type="button" class="btn btn-default link" data-action="${action}">${item}</button>
-    	</sec:authorize>
-    </c:forEach>
-  </div>
-  <table class="table">
-  	<thead>
-	  	<tr>
-	  		<th>#</th>
-	  		<c:forEach var="item" items="${colunas}">
-	  			<th>${item}</th>
-	  		</c:forEach>
-	  		<th>...</th>
-	  	</tr>
-  	</thead>
-  	
-  	<tbody>
-  		<tr>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  	
-  	<tfoot>
-  		<tr>
-  			<td></td>
-  			<c:forEach var="item" items="${colunas}">
-  				<td>${item}</td>
-  			</c:forEach>
-  			<td></td>
-  		</tr>
-  	</tfoot>  	
-  </table>
+<div class="content">
+	<div class="panel panel-default">
+	  <div class="panel-heading">${classe}</div>
+	  <div class="panel-body">
+	    <c:forEach var="item" items="${menu}">
+	    	<sec:authorize access="hasPermission(#user, '${item}_${classe}')">
+	    		<c:url value="/${classe}/${item}" var="action"/>
+	    		<button type="button" class="btn btn-default link" data-action="${action}">${item}</button>
+	    	</sec:authorize>
+	    </c:forEach>
+	  </div>
+	  <table class="table">
+	  	<thead>
+		  	<tr>
+		  		<th>#</th>
+		  		<c:forEach var="item" items="${colunas}">
+		  			<th>${item}</th>
+		  		</c:forEach>
+		  		<th>...</th>
+		  	</tr>
+	  	</thead>
+	  	
+	  	<tbody>
+	  		<tr>
+	  			<td></td>
+	  		</tr>
+	  	</tbody>
+	  	
+	  	<tfoot>
+	  		<tr>
+	  			<td></td>
+	  			<c:forEach var="item" items="${colunas}">
+	  				<td>${item}</td>
+	  			</c:forEach>
+	  			<td></td>
+	  		</tr>
+	  	</tfoot>  	
+	  </table>
+	</div>
 </div>
 
 <div style="display: none;">
