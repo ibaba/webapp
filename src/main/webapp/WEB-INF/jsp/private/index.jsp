@@ -7,6 +7,8 @@
   </head>
   <body>
 
+<div class="content">
+
 <div class="panel panel-default">
   <div class="panel-heading">${classe}</div>
   <div class="panel-body">
@@ -56,53 +58,10 @@
 </div>
 
 <script>
-$(document).ready(function(){
-	$("tbody.content").empty();
-	
-	var atributos = [];
-	$("thead").find("th").each(function(){
-		atributos.push($(this).text());
-	});
-	
-	var url = '<c:url value="/${classe}/lista.json"/>';
-	$.get(url, function(data) {
-		$.each(data, function(index, item) {
-			var row = $('<tr>');
-			for(var i=0; i<atributos.length; i++) {
-				if(atributos[i] == '#')
-					row.append('<td>'+item.id+'</td>');
-				else if(atributos[i] == '...') {
-				    var col = $('<td>');
-				    var grupo = $('<div class="btn-group">');
-				    $(".cmd").each(function(){
-					    var nome = $(this).html();
-					    var action = $(this).data("action") + "/" + item.id;
-					    grupo.append('<button type="button" class="btn btn-default link" data-action="'+action+'">'+nome+'</button>');
-				    });
-				    col.append(grupo);
-				    row.append(col);
-				}
-				else
-					row.append('<td>'+item[atributos[i]]+'</td>');
-			}
-			$("tbody.content").append(row);
-		});
-	});
-	
-	$(document).on("click", "button.link", function(event){
-		event.preventDefault();
-		var link = $(this).data("action");
-		$.ajax({
-			type: 'GET',
-			url: link
-		}).done(function(data){
-			var $temp  = $('<div/>', {html:data});
-			$(".panel-default").empty();
-			$(".panel-default").html( $temp.remove('head').html() );
-		});
-	});
-});
+	load_content();
 </script>
+
+</div>
 
   </body>
 </html>

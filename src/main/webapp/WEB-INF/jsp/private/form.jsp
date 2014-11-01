@@ -45,18 +45,5 @@
 <div class="alert alert-success" role="alert" style="display: none;">Formul&aacute;rio enviado com sucesso!</div>
 <div class="alert alert-danger" role="alert" style="display: none;">...</div>
 
-<script>
-$(document).ready(function(){
-	$("form.form").ajaxForm(function(data) { 
-	    if(data == "") {
-	    	$(".alert-success").show();
-	    } else {
-	    	var $temp  = $('<div/>', {html:data});
-	    	$(".alert-danger").empty();
-	    	$(".alert-danger").html( $temp.remove('head').html() );
-	    }
-	});
-});
-</script>
   </body>
 </html>
