@@ -46,16 +46,18 @@
 <div class="alert alert-danger" role="alert" style="display: none;">...</div>
 
 <script>
-$('form.form').each(function(){
-	var form = this;
-	$(form).ajaxForm(function(data) { 
-	    if(data == "") {
-	    	$(".alert-success").show();
-	    } else {
-	    	var $temp  = $('<div/>', {html:data});
-	    	$(".alert-danger").empty();
-	    	$(".alert-danger").html( $temp.remove('head').html() );
-	    }
+$(document).ready(function(){
+	$('form.form').each(function(){
+		var form = this;
+		$(form).ajaxForm(function(data) { 
+		    if(data == "") {
+		    	$(".alert-success").show();
+		    } else {
+		    	var $temp  = $('<div/>', {html:data});
+		    	$(".alert-danger").empty();
+		    	$(".alert-danger").html( $temp.remove('head').html() );
+		    }
+		});
 	});
 });
 </script>
