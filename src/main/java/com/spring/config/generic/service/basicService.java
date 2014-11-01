@@ -75,26 +75,32 @@ public class basicService<E> {
 	}
 	
 	public List<String> menu(Class<?> controller) {
+		System.out.println("menu(...)");
 		List<String> ret = new ArrayList<String>();
 		
 		List<Method> lista = Arrays.asList(controller.getDeclaredMethods());
 		for(int i=0; i<lista.size(); i++) {
+			System.out.println(lista.get(i).getName());
 			if(lista.get(i).isAnnotationPresent(Menu.class))
-				ret.add(lista.get(i).getName());
+				ret.add(lista.get(i).getAnnotation(Menu.class).label());
 		}
 		
+		System.out.println(ret);
 		return ret;
 	}
 	
 	public List<String> item(Class<?> controller) {
+		System.out.println("item(...)");
 		List<String> ret = new ArrayList<String>();
 		
 		List<Method> lista = Arrays.asList(controller.getDeclaredMethods());
 		for(int i=0; i<lista.size(); i++) {
+			System.out.println(lista.get(i).getName());
 			if(lista.get(i).isAnnotationPresent(Item.class))
-				ret.add(lista.get(i).getName());
+				ret.add(lista.get(i).getAnnotation(Item.class).label());
 		}
 		
+		System.out.println(ret);
 		return ret;
 	}
 	
