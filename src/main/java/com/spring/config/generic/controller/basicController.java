@@ -57,7 +57,7 @@ public class basicController<E> {
 	@Item(label = "remover")
 	public String remocao(Model model, @PathVariable("id") String id) {
 		model.addAttribute("command", serv.getObject(Integer.valueOf(id)));
-		return "private/form";
+		return "private/form_remove";
 	}
 	
 	@RequestMapping(value = "insert", method=RequestMethod.POST)

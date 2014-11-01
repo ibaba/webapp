@@ -12,9 +12,17 @@ $(document).on('submit', '.form', function (event) {
 	    	$("#not").empty();
 	    	$("#not").html( $temp.remove('head').html() );
 	    }
+	    
+	    if( $(".pergunta").is(":visible") )
+	    	$(".pergunta").hide();
 		
 		$(".form").each (function(){
 			this.reset();
 		});
 	});
+});
+
+$(document).on('click', '.remove', function(event){
+	event.preventDefault();
+	$(".pergunta").hide();
 });

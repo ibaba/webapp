@@ -27,7 +27,10 @@ public class FormTag extends TagSupport {
 				out.println("<form class=\"form\" role=\"form\" method=\"post\" action=\""+action+"\">");
 			}
 			else {
-				action = pageContext.getServletContext().getContextPath() + "/" + classe().getSimpleName() + "/update";
+				if(pageContext.findAttribute("action") == null)
+					action = pageContext.getServletContext().getContextPath() + "/" + classe().getSimpleName() + "/update";
+				else
+					action = pageContext.getServletContext().getContextPath() + "/" + classe().getSimpleName() + "/delete";
 				out.println("<form class=\"form\" role=\"form\" method=\"post\" action=\""+action+"\">");
 				out.println("   <input type=\"hidden\" name=\"id\" value=\""+id+"\"/>");
 			}
