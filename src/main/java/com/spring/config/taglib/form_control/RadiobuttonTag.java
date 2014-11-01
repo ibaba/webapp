@@ -1,8 +1,8 @@
 package com.spring.config.taglib.form_control;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 
+import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import com.spring.config.annotation.form_control.Radiobutton;
@@ -15,17 +15,28 @@ public class RadiobuttonTag extends TagSupport {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void doTag() throws IOException {
-		pageContext.getOut().println("<field-box>");
+	public int doStartTag() {
+		JspWriter out = pageContext.getOut();
 		try {
+			out.println("<field-box>");
 			if(value())
-				pageContext.getOut().println("   <input type=\"radio\" name=\""+name()+"\" checked=\"checked\">"+label()+"<br>");
+				out.println("   <input type=\"radio\" name=\""+name()+"\" checked=\"checked\">"+label()+"<br>");
 			else
-				pageContext.getOut().println("   <input type=\"radio\" name=\""+name()+"\">"+label()+"<br>");
+				out.println("   <input type=\"radio\" name=\""+name()+"\">"+label()+"<br>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		pageContext.getOut().println("</field-box>");
+		return EVAL_BODY_INCLUDE;
+	}
+	
+	public int doEndTag() {
+		JspWriter out = pageContext.getOut();
+		try {
+			out.println("</field-box>");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return EVAL_PAGE;
 	}
 	
 	public int index() {

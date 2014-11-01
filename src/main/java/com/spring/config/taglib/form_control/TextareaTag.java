@@ -1,8 +1,8 @@
 package com.spring.config.taglib.form_control;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 
+import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import com.spring.config.annotation.form_control.Textarea;
@@ -15,17 +15,28 @@ public class TextareaTag extends TagSupport {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void doTag() throws IOException {
-		pageContext.getOut().println("<field-box>");
-		pageContext.getOut().println("   <label>"+label()+"</label>");
-		pageContext.getOut().println("   <textarea name=\""+name()+"\" class=\"form-control\">");
+	public int doStartTag() {
+		JspWriter out = pageContext.getOut();
 		try {
-			pageContext.getOut().println(value());
+			out.println("<field-box>");
+			out.println("   <label>"+label()+"</label>");
+			out.println("   <textarea name=\""+name()+"\" class=\"form-control\">");
+			out.println(value());
+			out.println("   </textarea>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		pageContext.getOut().println("</textarea>");
-		pageContext.getOut().println("</field-box>");
+		return EVAL_BODY_INCLUDE;
+	}
+	
+	public int doEndTag() {
+		JspWriter out = pageContext.getOut();
+		try {
+			out.println("</field-box>");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return EVAL_PAGE;
 	}
 	
 	public int index() {
