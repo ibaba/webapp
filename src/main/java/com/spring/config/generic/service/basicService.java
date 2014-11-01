@@ -1,6 +1,7 @@
 package com.spring.config.generic.service;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +11,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.spring.config.annotation.form_action.Item;
+import com.spring.config.annotation.form_action.Menu;
 import com.spring.config.annotation.form_control.Input;
 import com.spring.config.generic.persistence.Dao;
 
@@ -72,14 +75,6 @@ public class basicService<E> {
 	
 	public String getName() {
 		return clazz.getSimpleName();
-	}
-	
-	public List<String> menu() {
-		return null;
-	}
-	
-	public List<String> item() {
-		return null;
 	}
 	
 }
