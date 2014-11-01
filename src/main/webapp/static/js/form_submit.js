@@ -21,8 +21,3 @@ $(document).on('submit', '.form', function (event) {
 		});
 	});
 });
-
-$(document).on('click', '.remove', function(event){
-	event.preventDefault();
-	$(".pergunta").hide();
-});

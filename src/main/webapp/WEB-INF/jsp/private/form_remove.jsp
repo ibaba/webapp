@@ -36,7 +36,7 @@
 		
 		<div class="panel-footer">
 			<button type="submit" class="btn btn-lg btn-link">Sim</button>
-			<button type="button" class="btn btn-lg btn-link remove">N&atilde;o</button>
+			<button type="button" class="btn btn-lg btn-link link" data-action="${url}">N&atilde;o</button>
 		</div>
 	</div>
 </x:Form>
