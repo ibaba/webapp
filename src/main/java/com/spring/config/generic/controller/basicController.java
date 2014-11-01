@@ -1,8 +1,11 @@
 package com.spring.config.generic.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.spring.config.annotation.form_action.Item;
 import com.spring.config.annotation.form_action.Menu;
 import com.spring.config.generic.service.basicService;
@@ -31,8 +35,6 @@ public class basicController<E> {
 	public String index(Model model) {
 		model.addAttribute("classe", getName());
 		model.addAttribute("colunas", serv.header());
-		model.addAttribute("menu", serv.menu(this.getClass()));
-		model.addAttribute("item", serv.item(this.getClass()));
 		return "private/index";
 	}
 	

@@ -1,7 +1,6 @@
 package com.spring.config.generic.service;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,8 +10,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.spring.config.annotation.form_action.Item;
-import com.spring.config.annotation.form_action.Menu;
 import com.spring.config.annotation.form_control.Input;
 import com.spring.config.generic.persistence.Dao;
 
@@ -47,6 +44,10 @@ public class basicService<E> {
 	}
 	
 	@Transactional
+	public List<?> lista() {
+		return dao.findAll();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public E newObject() throws Exception {
 		return (E) clazz.newInstance();
@@ -55,11 +56,6 @@ public class basicService<E> {
 	@SuppressWarnings("unchecked")
 	public E getObject(Integer id) {
 		return (E) dao.findById(id);
-	}
-	
-	@Transactional
-	public List<?> lista() {
-		return dao.findAll();
 	}
 	
 	public List<String> header() {
@@ -71,36 +67,6 @@ public class basicService<E> {
 				ret.add(lista.get(i).getName());
 		}
 		
-		return ret;
-	}
-	
-	public List<String> menu(Class<?> controller) {
-		System.out.println("menu(...)");
-		List<String> ret = new ArrayList<String>();
-		
-		List<Method> lista = Arrays.asList(controller.getDeclaredMethods());
-		for(int i=0; i<lista.size(); i++) {
-			System.out.println(lista.get(i).getName());
-			if(lista.get(i).isAnnotationPresent(Menu.class))
-				ret.add(lista.get(i).getAnnotation(Menu.class).label());
-		}
-		
-		System.out.println(ret);
-		return ret;
-	}
-	
-	public List<String> item(Class<?> controller) {
-		System.out.println("item(...)");
-		List<String> ret = new ArrayList<String>();
-		
-		List<Method> lista = Arrays.asList(controller.getDeclaredMethods());
-		for(int i=0; i<lista.size(); i++) {
-			System.out.println(lista.get(i).getName());
-			if(lista.get(i).isAnnotationPresent(Item.class))
-				ret.add(lista.get(i).getAnnotation(Item.class).label());
-		}
-		
-		System.out.println(ret);
 		return ret;
 	}
 	
