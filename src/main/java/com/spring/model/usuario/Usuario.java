@@ -1,5 +1,8 @@
 package com.spring.model.usuario;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -35,7 +38,7 @@ public class Usuario extends Model {
 	@Input(label = "Login")
 	private String login;
 	
-	@Input(label = "Senha")
+	@Input(label = "Senha", type="password")
 	private String senha;
 	
 	@Input(label = "Nome")
@@ -44,7 +47,7 @@ public class Usuario extends Model {
 	@Input(label = "Sobrenome")
 	private String sobrenome;
 	
-	@Input(label = "E-mail")
+	@Input(label = "E-mail", type="email")
 	private String email;
 	
 	@ManyToMany
@@ -73,8 +76,11 @@ public class Usuario extends Model {
 		return senha;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setSenha(String senha) throws NoSuchAlgorithmException {
+		MessageDigest m = MessageDigest.getInstance("MD5");
+		m.update(senha.getBytes(), 0, senha.length());
+		BigInteger hash = new BigInteger(1, m.digest());
+		this.senha = hash.toString(16);
 	}
 
 	public String getNome() {
