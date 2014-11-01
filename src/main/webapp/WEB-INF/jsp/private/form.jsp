@@ -10,11 +10,13 @@
 <c:url value="/${command['class'].simpleName}/index" var="url"/>
 <button type="button" class="btn btn-default link" data-action="${url}">Voltar</button>
 
-<br/>
+<hr/>
 
 <x:Form>
 	<c:forEach var="item" items="${command['class'].declaredFields}" varStatus="status">
-		<c:forEach var="item2" items="${item.annotations}">
+		<h3>${item.name}</h3>
+		<c:forEach var="item2" items="${item['class'].annotations}">
+			<h4>${item2.name}</h4>
 			<c:choose>
 				<c:when test="${item2['class'].simpleName == 'Checkbox'}">
 					<x:Checkbox/>
