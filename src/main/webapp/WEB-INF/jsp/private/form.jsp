@@ -16,22 +16,22 @@
 	<c:forEach var="item" items="${command['class'].declaredFields}" varStatus="status">
 		<c:forEach var="item2" items="${item.declaredAnnotations}">
 			<c:choose>
-				<c:when test="${item2['class'].simpleName == 'Checkbox'}">
+				<c:when test="${item2.annotationType().simpleName == 'Checkbox'}">
 					<x:Checkbox/>
 				</c:when>
-				<c:when test="${item2['class'].simpleName == 'DataList'}">
+				<c:when test="${item2.annotationType().simpleName == 'DataList'}">
 					<x:DataList/>
 				</c:when>
-				<c:when test="${item2['class'].simpleName == 'Input'}">
+				<c:when test="${item2.annotationType().simpleName == 'Input'}">
 					<x:Input/>
 				</c:when>
-				<c:when test="${item2['class'].simpleName == 'Radiobutton'}">
+				<c:when test="${item2.annotationType().simpleName == 'Radiobutton'}">
 					<x:Radiobutton/>
 				</c:when>
-				<c:when test="${item2['class'].simpleName == 'Select'}">
+				<c:when test="${item2.annotationType().simpleName == 'Select'}">
 					<x:Select/>
 				</c:when>
-				<c:when test="${item2['class'].simpleName == 'Textarea'}">
+				<c:when test="${item2.annotationType().simpleName == 'Textarea'}">
 					<x:Textarea/>
 				</c:when>
 			</c:choose>
