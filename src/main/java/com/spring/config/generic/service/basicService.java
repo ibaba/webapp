@@ -74,4 +74,12 @@ public class basicService<E> {
 		return clazz.getSimpleName();
 	}
 	
+	public List<String> menu() {
+		return null;
+	}
+	
+	public List<String> item() {
+		return null;
+	}
+	
 }
