@@ -13,8 +13,8 @@
 <br/>
 
 <x:Form>
-	<c:forEach var="item" items="${command.fields}">
-		<c:forEach var="item2" items="${item['class'].annotations}">
+	<c:forEach var="item" items="${command['class'].fields}">
+		<c:forEach var="item2" items="${item.annotations}">
 			<c:choose>
 				<c:when test="${item2['class'].annotationType() == 'Checkbox'}">
 					<x:Checkbox/>
@@ -56,7 +56,6 @@ $('form.form').each(function(){
 	    	$(".alert-danger").html( $temp.remove('head').html() );
 	    }
 	});
-	form.hide();
 });
 </script>
   </body>
