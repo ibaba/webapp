@@ -1,4 +1,4 @@
-function load_content() {
+function load_content(url) {
 	$("tbody.content").empty();
 	
 	var atributos = [];
@@ -6,7 +6,6 @@ function load_content() {
 		atributos.push($(this).text());
 	});
 	
-	var url = '<c:url value="/${classe}/lista.json"/>';
 	$.get(url, function(data) {
 		$.each(data, function(index, item) {
 			var row = $('<tr>');

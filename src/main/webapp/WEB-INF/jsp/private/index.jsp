@@ -58,7 +58,7 @@
 </div>
 
 <script>
-	load_content();
+	load_content("<c:url value='/${classe}/lista.json'/>");
 </script>
 
 </div>
