@@ -14,26 +14,24 @@
 
 <x:Form>
 	<c:forEach var="item" items="${command['class'].declaredFields}" varStatus="status">
-		<h3>${item.name}</h3>
 		<c:forEach var="item2" items="${item.declaredAnnotations}">
-			<h4>${item2}</h4>
 			<c:choose>
-				<c:when test="${item2['proxyClass'].simpleName == 'Checkbox'}">
+				<c:when test="${item2['class'].simpleName == 'Checkbox'}">
 					<x:Checkbox/>
 				</c:when>
-				<c:when test="${item2['proxyClass'].simpleName == 'DataList'}">
+				<c:when test="${item2['class'].simpleName == 'DataList'}">
 					<x:DataList/>
 				</c:when>
-				<c:when test="${item2['proxyClass'].simpleName == 'Input'}">
+				<c:when test="${item2['class'].simpleName == 'Input'}">
 					<x:Input/>
 				</c:when>
-				<c:when test="${item2['proxyClass'].simpleName == 'Radiobutton'}">
+				<c:when test="${item2['class'].simpleName == 'Radiobutton'}">
 					<x:Radiobutton/>
 				</c:when>
-				<c:when test="${item2['proxyClass'].simpleName == 'Select'}">
+				<c:when test="${item2['class'].simpleName == 'Select'}">
 					<x:Select/>
 				</c:when>
-				<c:when test="${item2['proxyClass'].simpleName == 'Textarea'}">
+				<c:when test="${item2['class'].simpleName == 'Textarea'}">
 					<x:Textarea/>
 				</c:when>
 			</c:choose>
