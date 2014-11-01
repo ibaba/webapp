@@ -3,6 +3,8 @@ package com.spring.model.usuario;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -15,7 +17,6 @@ import com.spring.config.annotation.form.Form;
 import com.spring.config.annotation.form_control.Input;
 import com.spring.config.annotation.form_control.Select;
 import com.spring.config.generic.persistence.Model;
-
 import com.spring.model.role.Role;
 
 @Entity
@@ -28,6 +29,7 @@ public class Usuario extends Model {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Input(label = "Login")
