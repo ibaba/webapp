@@ -1,7 +1,8 @@
 package com.spring.config.taglib.form_control;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -20,11 +21,22 @@ public class SelectTag extends TagSupport {
 		JspWriter out = pageContext.getOut();
 		try {
 			out.println("<field-box>");
+			
 			out.println("   <label>"+label()+"</label>");
-			out.println("   <select name=\""+name()+"\" class=\"form-control\">");
+			if(field().getType() == List.class || field().getType() == ArrayList.class )
+				out.println("   <select name=\""+name()+"\" multiple=\"multiple\" class=\"form-control\">");
+			else
+				out.println("   <select name=\""+name()+"\" class=\"form-control\">");
+			
+			List<?> lista = list_values();
+			for(int i=0; i<lista.size(); i++) {
+				Integer id = (Integer) lista.get(i).getClass().getMethod("getId").invoke(lista.get(i));
+				String nome = lista.get(i).toString();
+				out.println("      <option value=\""+id+"\">"+nome+"</option>");
+			}
+			
 			out.println("   </select>");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return EVAL_BODY_INCLUDE;
@@ -64,6 +76,10 @@ public class SelectTag extends TagSupport {
 	public Object value() throws Exception {
 		Object object = pageContext.findAttribute("command");
 		return object.getClass().getMethod("get"+caps(field().getName())).invoke(object);
+	}
+	
+	public List<?> list_values() {
+		return new ArrayList<Object>();
 	}
 	
 	private String caps(String string) {

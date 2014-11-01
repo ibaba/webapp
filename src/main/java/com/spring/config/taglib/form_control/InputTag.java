@@ -20,7 +20,12 @@ public class InputTag extends TagSupport {
 		try {
 			out.println("<field-box>");
 			out.println("   <label>"+label()+"</label>");
-			out.println("   <input type=\""+type()+"\" name=\""+name()+"\" value=\""+value()+"\" pattern=\""+pattern()+"\" class=\"form-control\"/>");
+			String pattern = (pattern().isEmpty()?"":"pattern="+pattern());
+			String value = (value()==null?"":"value="+value());
+			if(value() == null)
+				out.println("   <input type=\""+type()+"\" name=\""+name()+"\" "+value+" "+pattern+" class=\"form-control\"/>");
+			else
+				out.println("   <input type=\""+type()+"\" name=\""+name()+"\" "+value+" "+pattern+" class=\"form-control\"/>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

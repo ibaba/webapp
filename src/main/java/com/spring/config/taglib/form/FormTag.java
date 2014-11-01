@@ -21,11 +21,16 @@ public class FormTag extends TagSupport {
 		try {
 			String action = new String();
 			Object command = pageContext.findAttribute("command");
-			if(command.getClass().getMethod("getId").invoke(command) == null)
+			Integer id = (Integer) command.getClass().getMethod("getId").invoke(command); 
+			if(id == null) {
 				action = pageContext.getServletContext().getContextPath() + "/" + classe().getSimpleName() + "/insert";
-			else
+				out.println("<form class=\"form\" role=\"form\" method=\"post\" action=\""+action+"\">");
+			}
+			else {
 				action = pageContext.getServletContext().getContextPath() + "/" + classe().getSimpleName() + "/update";
-			out.println("<form class=\"form\" role=\"form\" method=\"post\" action=\""+action+"\">");
+				out.println("<form class=\"form\" role=\"form\" method=\"post\" action=\""+action+"\">");
+				out.println("   <input type=\"hidden\" name=\"id\" value=\""+id+"\"/>");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
