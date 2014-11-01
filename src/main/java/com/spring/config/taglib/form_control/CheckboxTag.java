@@ -3,28 +3,33 @@ package com.spring.config.taglib.form_control;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import javax.servlet.jsp.tagext.TagSupport;
 
 import com.spring.config.annotation.form_control.Checkbox;
 import com.spring.config.taglib.form.FormTag;
 
-public class CheckboxTag extends SimpleTagSupport {
+public class CheckboxTag extends TagSupport {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public void doTag() throws IOException {
-		getJspContext().getOut().println("<field-box>");
+		pageContext.getOut().println("<field-box>");
 		try {
 			if(value())
-				getJspContext().getOut().println("   <input type=\"checkbox\" name=\""+name()+"\" checked=\"checked\">"+label()+"<br>");
+				pageContext.getOut().println("   <input type=\"checkbox\" name=\""+name()+"\" checked=\"checked\">"+label()+"<br>");
 			else
-				getJspContext().getOut().println("   <input type=\"checkbox\" name=\""+name()+"\">"+label()+"<br>");
+				pageContext.getOut().println("   <input type=\"checkbox\" name=\""+name()+"\">"+label()+"<br>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		getJspContext().getOut().println("</field-box>");
+		pageContext.getOut().println("</field-box>");
 	}
 	
 	public int index() {
-		return (Integer) getJspContext().findAttribute("index");
+		return (Integer) pageContext.findAttribute("index");
 	}
 	
 	public Field field() {
@@ -41,7 +46,7 @@ public class CheckboxTag extends SimpleTagSupport {
 	}
 	
 	public Boolean value() throws Exception {
-		Object object = getJspContext().findAttribute("command");
+		Object object = pageContext.findAttribute("command");
 		return (Boolean) object.getClass().getMethod("get"+caps(field().getName())).invoke(object);
 	}
 	

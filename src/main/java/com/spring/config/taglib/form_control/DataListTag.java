@@ -3,28 +3,33 @@ package com.spring.config.taglib.form_control;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import javax.servlet.jsp.tagext.TagSupport;
 
 import com.spring.config.annotation.form_control.DataList;
 import com.spring.config.taglib.form.FormTag;
 
-public class DataListTag extends SimpleTagSupport {
+public class DataListTag extends TagSupport {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void doTag() throws IOException {
-		getJspContext().getOut().println("<field-box>");
-		getJspContext().getOut().println("   <label>"+label()+"</label>");
+		pageContext.getOut().println("<field-box>");
+		pageContext.getOut().println("   <label>"+label()+"</label>");
 		try {
-			getJspContext().getOut().println("   <input name=\""+name()+"\" value=\""+value()+"\" list=\""+name()+"\" class=\"form-control\"/>");
+			pageContext.getOut().println("   <input name=\""+name()+"\" value=\""+value()+"\" list=\""+name()+"\" class=\"form-control\"/>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		getJspContext().getOut().println("   <datalist id=\""+name()+"\">");
-		getJspContext().getOut().println("   </datalist>");
-		getJspContext().getOut().println("</field-box>");
+		pageContext.getOut().println("   <datalist id=\""+name()+"\">");
+		pageContext.getOut().println("   </datalist>");
+		pageContext.getOut().println("</field-box>");
 	}
 	
 	public int index() {
-		return (Integer) getJspContext().findAttribute("index");
+		return (Integer) pageContext.findAttribute("index");
 	}
 	
 	public Field field() {
@@ -45,7 +50,7 @@ public class DataListTag extends SimpleTagSupport {
 	}
 	
 	public Object value() throws Exception {
-		Object object = getJspContext().findAttribute("command");
+		Object object = pageContext.findAttribute("command");
 		return object.getClass().getMethod("get"+caps(field().getName())).invoke(object);
 	}
 	

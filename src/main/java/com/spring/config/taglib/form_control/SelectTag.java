@@ -3,23 +3,28 @@ package com.spring.config.taglib.form_control;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import javax.servlet.jsp.tagext.TagSupport;
 
 import com.spring.config.annotation.form_control.Select;
 import com.spring.config.taglib.form.FormTag;
 
-public class SelectTag extends SimpleTagSupport {
+public class SelectTag extends TagSupport {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void doTag() throws IOException {
-		getJspContext().getOut().println("<field-box>");
-		getJspContext().getOut().println("   <label>"+label()+"</label>");
-		getJspContext().getOut().println("   <select name=\""+name()+"\" class=\"form-control\">");
-		getJspContext().getOut().println("   </select>");
-		getJspContext().getOut().println("</field-box>");
+		pageContext.getOut().println("<field-box>");
+		pageContext.getOut().println("   <label>"+label()+"</label>");
+		pageContext.getOut().println("   <select name=\""+name()+"\" class=\"form-control\">");
+		pageContext.getOut().println("   </select>");
+		pageContext.getOut().println("</field-box>");
 	}
 	
 	public int index() {
-		return (Integer) getJspContext().findAttribute("index");
+		return (Integer) pageContext.findAttribute("index");
 	}
 	
 	public Field field() {
@@ -40,7 +45,7 @@ public class SelectTag extends SimpleTagSupport {
 	}
 	
 	public Object value() throws Exception {
-		Object object = getJspContext().findAttribute("command");
+		Object object = pageContext.findAttribute("command");
 		return object.getClass().getMethod("get"+caps(field().getName())).invoke(object);
 	}
 	
