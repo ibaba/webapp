@@ -14,6 +14,7 @@
 
 <x:Form>
 	<c:forEach var="item" items="${command['class'].declaredFields}" varStatus="status">
+		<c:set var="index" value="${status.index}"/>
 		<c:forEach var="item2" items="${item.declaredAnnotations}">
 			<c:choose>
 				<c:when test="${item2.annotationType().simpleName == 'Checkbox'}">
