@@ -4,17 +4,17 @@ insert into Role (id, nome) values ('3', 'role');
 insert into Role (id, nome) values ('4', 'permission');
 
 insert into Permission (id, nome) values ('1', 'admin');
-insert into Permission (id, nome) values ('2', 'cadastra_Usuario');
-insert into Permission (id, nome) values ('3', 'altera_Usuario');
-insert into Permission (id, nome) values ('4', 'remove_Usuario');
+insert into Permission (id, nome) values ('2', 'cadastrar_Usuario');
+insert into Permission (id, nome) values ('3', 'alterar_Usuario');
+insert into Permission (id, nome) values ('4', 'remover_Usuario');
 insert into Permission (id, nome) values ('5', 'listagem_Usuario');
-insert into Permission (id, nome) values ('6', 'cadastra_Role');
-insert into Permission (id, nome) values ('7', 'altera_Role');
-insert into Permission (id, nome) values ('8', 'remove_Role');
+insert into Permission (id, nome) values ('6', 'cadastrar_Role');
+insert into Permission (id, nome) values ('7', 'alterar_Role');
+insert into Permission (id, nome) values ('8', 'remover_Role');
 insert into Permission (id, nome) values ('9', 'listagem_Role');
-insert into Permission (id, nome) values ('10', 'cadastra_Permission');
-insert into Permission (id, nome) values ('11', 'altera_Permission');
-insert into Permission (id, nome) values ('12', 'remove_Permission');
+insert into Permission (id, nome) values ('10', 'cadastrar_Permission');
+insert into Permission (id, nome) values ('11', 'alterar_Permission');
+insert into Permission (id, nome) values ('12', 'remover_Permission');
 insert into Permission (id, nome) values ('13', 'listagem_Permission');
 
 

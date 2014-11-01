@@ -28,20 +28,20 @@ public class basicService<E> {
 	}
 	
 	@Transactional
-	@PreAuthorize("hasPermission(#user, 'cadastra_'+#this.this.name)")
+	@PreAuthorize("hasPermission(#user, 'cadastrar_'+#this.this.name)")
 	public void insert(E object) {
 		dao.persist(object);
 	}
 	
 	@Transactional
 	@SuppressWarnings("unchecked")
-	@PreAuthorize("hasPermission(#user, 'altera_'+#this.this.name)")
+	@PreAuthorize("hasPermission(#user, 'alterar_'+#this.this.name)")
 	public E update(E object) {
 		return (E) dao.merge(object);
 	}
 	
 	@Transactional
-	@PreAuthorize("hasPermission(#user, 'remove_'+#this.this.name)")
+	@PreAuthorize("hasPermission(#user, 'remover_'+#this.this.name)")
 	public void remove(E object) {
 		dao.delete(object);
 	}
@@ -75,6 +75,34 @@ public class basicService<E> {
 	
 	public String getName() {
 		return clazz.getSimpleName();
+	}
+	
+	public List<String> menu(Class<?> controller) {
+		List<String> ret = new ArrayList<String>();
+		
+		List<Method> lista = Arrays.asList(controller.getMethods());
+		for(int i=0; i<lista.size(); i++) {
+			System.out.println(lista.get(i).getName());
+			if( lista.get(i).isAnnotationPresent(Menu.class) )
+				ret.add(lista.get(i).getAnnotation(Menu.class).label());
+		}
+		
+		System.out.println(ret);
+		return ret;
+	}
+	
+	public List<String> item(Class<?> controller) {
+		List<String> ret = new ArrayList<String>();
+		
+		List<Method> lista = Arrays.asList(controller.getMethods());
+		for(int i=0; i<lista.size(); i++) {
+			System.out.println(lista.get(i).getName());
+			if( lista.get(i).isAnnotationPresent(Item.class) )
+				ret.add(lista.get(i).getAnnotation(Item.class).label());
+		}
+		
+		System.out.println(ret);
+		return ret;
 	}
 	
 }

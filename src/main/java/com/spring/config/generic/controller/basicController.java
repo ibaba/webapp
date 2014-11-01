@@ -3,7 +3,6 @@ package com.spring.config.generic.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.spring.config.annotation.form_action.Item;
 import com.spring.config.annotation.form_action.Menu;
 import com.spring.config.generic.service.basicService;
@@ -33,11 +31,13 @@ public class basicController<E> {
 	public String index(Model model) throws Exception {
 		model.addAttribute("classe", getName());
 		model.addAttribute("colunas", serv.header());
+		model.addAttribute("menu", serv.menu(this.getClass()));
+		model.addAttribute("item", serv.item(this.getClass()));
 		return "private/index";
 	}
 	
 	@RequestMapping(value = "cadastrar")
-	@PreAuthorize("hasPermission(#user, 'cadastra_'+#this.this.name)")
+	@PreAuthorize("hasPermission(#user, 'cadastrar_'+#this.this.name)")
 	@Menu(label = "cadastrar")
 	public String cadastro(Model model) throws Exception {
 		model.addAttribute("command", serv.newObject());
@@ -45,7 +45,7 @@ public class basicController<E> {
 	}
 	
 	@RequestMapping(value = "alterar/{id}")
-	@PreAuthorize("hasPermission(#user, 'altera_'+#this.this.name)")
+	@PreAuthorize("hasPermission(#user, 'alterar_'+#this.this.name)")
 	@Item(label = "alterar")
 	public String alteracao(Model model, @PathVariable("id") String id) {
 		model.addAttribute("command", serv.getObject(Integer.valueOf(id)));
@@ -53,7 +53,7 @@ public class basicController<E> {
 	}
 	
 	@RequestMapping(value = "remover/{id}")
-	@PreAuthorize("hasPermission(#user, 'remove_'+#this.this.name)")
+	@PreAuthorize("hasPermission(#user, 'remover_'+#this.this.name)")
 	@Item(label = "remover")
 	public String remocao(Model model, @PathVariable("id") String id) {
 		model.addAttribute("command", serv.getObject(Integer.valueOf(id)));
