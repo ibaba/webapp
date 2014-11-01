@@ -82,12 +82,10 @@ public class basicService<E> {
 		
 		List<Method> lista = Arrays.asList(controller.getMethods());
 		for(int i=0; i<lista.size(); i++) {
-			System.out.println(lista.get(i).getName());
 			if( lista.get(i).isAnnotationPresent(Menu.class) )
 				ret.add(lista.get(i).getAnnotation(Menu.class).label());
 		}
 		
-		System.out.println(ret);
 		return ret;
 	}
 	
@@ -96,12 +94,10 @@ public class basicService<E> {
 		
 		List<Method> lista = Arrays.asList(controller.getMethods());
 		for(int i=0; i<lista.size(); i++) {
-			System.out.println(lista.get(i).getName());
 			if( lista.get(i).isAnnotationPresent(Item.class) )
 				ret.add(lista.get(i).getAnnotation(Item.class).label());
 		}
 		
-		System.out.println(ret);
 		return ret;
 	}
 	
