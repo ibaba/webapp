@@ -13,25 +13,25 @@
 <br/>
 
 <x:Form>
-	<c:forEach var="item" items="${command['class'].fields}">
+	<c:forEach var="item" items="${command['class'].declaredFields}" varStatus="status">
 		<c:forEach var="item2" items="${item.annotations}">
 			<c:choose>
-				<c:when test="${item2['class'].annotationType() == 'Checkbox'}">
+				<c:when test="${item2['class'].simpleName == 'Checkbox'}">
 					<x:Checkbox/>
 				</c:when>
-				<c:when test="${item2['class'].annotationType() == 'DataList'}">
+				<c:when test="${item2['class'].simpleName == 'DataList'}">
 					<x:DataList/>
 				</c:when>
-				<c:when test="${item2['class'].annotationType() == 'Input'}">
+				<c:when test="${item2['class'].simpleName == 'Input'}">
 					<x:Input/>
 				</c:when>
-				<c:when test="${item2['class'].annotationType() == 'Radiobutton'}">
+				<c:when test="${item2['class'].simpleName == 'Radiobutton'}">
 					<x:Radiobutton/>
 				</c:when>
-				<c:when test="${item2['class'].annotationType() == 'Select'}">
+				<c:when test="${item2['class'].simpleName == 'Select'}">
 					<x:Select/>
 				</c:when>
-				<c:when test="${item2['class'].annotationType() == 'Textarea'}">
+				<c:when test="${item2['class'].simpleName == 'Textarea'}">
 					<x:Textarea/>
 				</c:when>
 			</c:choose>

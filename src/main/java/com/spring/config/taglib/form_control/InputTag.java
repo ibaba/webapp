@@ -27,7 +27,7 @@ public class InputTag extends TagSupport {
 	}
 	
 	public int index() {
-		return (Integer) pageContext.findAttribute("index");
+		return (Integer) pageContext.findAttribute("status.index");
 	}
 	
 	public Field field() {

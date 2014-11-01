@@ -46,7 +46,6 @@
 	  	</tfoot>  	
 	  </table>
 	</div>
-</div>
 
 <div style="display: none;">
 	<c:forEach var="item" items="${item}">
@@ -103,6 +102,7 @@ $(document).ready(function(){
 	});
 });
 </script>
+</div>
 
   </body>
 </html>
