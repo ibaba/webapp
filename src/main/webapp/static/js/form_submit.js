@@ -6,11 +6,11 @@ $(document).on('submit', '.form', function (event) {
 	var posting = $.post( url, $(this).serialize() );
 	posting.done(function( data ) {
 	    if(data == "") {
-	    	$(".alert-success").show();
+	    	$("#yes").show();
 	    } else {
 	    	var $temp  = $('<div/>', {html:data});
-	    	$(".alert-danger").empty();
-	    	$(".alert-danger").html( $temp.remove('head').html() );
+	    	$("#not").empty();
+	    	$("#not").html( $temp.remove('head').html() );
 	    }
 		
 		$(".form").each (function(){

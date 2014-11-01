@@ -42,8 +42,8 @@
 	<button type="submit" class="btn btn-default">Enviar</button>
 </x:Form>
 
-<div class="alert alert-success" role="alert" style="display: none;">Formul&aacute;rio enviado com sucesso!</div>
-<div class="alert alert-danger" role="alert" style="display: none;">...</div>
+<div class="alert alert-success" id="yes" role="alert" style="display: none;">Formul&aacute;rio enviado com sucesso!</div>
+<div class="alert alert-danger" id="not" role="alert" style="display: none;">...</div>
 
   </body>
 </html>
