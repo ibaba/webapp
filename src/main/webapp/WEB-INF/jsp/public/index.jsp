@@ -39,7 +39,8 @@
           		<li> <c:url value="/signin" var="signinUrl"/><a href="${signinUrl}">Entrar</a></li>
           	</sec:authorize>
           	<sec:authorize access="isAuthenticated()">
-          		<li> <c:url value="/admin" var="adminUrl"/><a href="${adminUrl}">${pageContext.request.remoteUser}</a> <c:url value="/logout" var="logoutUrl"/> (<a href="${logoutUrl}">Sair</a>) </li>
+          		<li> <c:url value="/admin" var="adminUrl"/><a href="${adminUrl}">${pageContext.request.remoteUser}</a> </li>
+          		<li> <c:url value="/logout" var="logoutUrl"/> (<a href="${logoutUrl}">Sair</a>) </li>
           	</sec:authorize>
           </ul>
         </div><!--/.nav-collapse -->
