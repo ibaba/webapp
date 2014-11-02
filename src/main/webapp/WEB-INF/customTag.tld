@@ -20,10 +20,6 @@
 		<tag-class>com.spring.config.taglib.form_control.InputTag</tag-class>
 	</tag>
 	<tag>
-		<name>Options</name>
-		<tag-class>com.spring.config.taglib.form_control.OptionsTag</tag-class>
-	</tag>
-	<tag>
 		<name>Radiobutton</name>
 		<tag-class>com.spring.config.taglib.form_control.RadiobuttonTag</tag-class>
 	</tag>

@@ -30,9 +30,7 @@
 					<x:Radiobutton/>
 				</c:when>
 				<c:when test="${item2.annotationType().simpleName == 'Select'}">
-					<x:Select>
-						<x:Options/>
-					</x:Select>
+					<x:Select/>
 				</c:when>
 				<c:when test="${item2.annotationType().simpleName == 'Textarea'}">
 					<x:Textarea/>
