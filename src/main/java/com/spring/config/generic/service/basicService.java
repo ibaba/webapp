@@ -52,6 +52,12 @@ public class basicService<E> {
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Transactional
+	public E getObject(String key, String value) {
+		return (E) dao.findByField(key, value);
+	}
+	
+	@SuppressWarnings("unchecked")
 	public E newObject() throws Exception {
 		return (E) clazz.newInstance();
 	}
@@ -71,10 +77,6 @@ public class basicService<E> {
 		}
 		
 		return ret;
-	}
-	
-	public String getName() {
-		return clazz.getSimpleName();
 	}
 	
 	public List<String> menu(Class<?> controller) {
@@ -99,6 +101,10 @@ public class basicService<E> {
 		}
 		
 		return ret;
+	}
+	
+	public String getName() {
+		return clazz.getSimpleName();
 	}
 	
 }

@@ -35,12 +35,7 @@
             </c:forEach>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <sec:authorize access="isAnonymous()">
-            	<li> <c:url value="/signin" var="signinUrl"/><a href="${signinUrl}">Sign-in</a></li>
-            </sec:authorize>
-            <sec:authorize access="isAuthenticated()">
-            	<li> <a href="#">${pageContext.request.remoteUser}</a> </li>
-            </sec:authorize>
+          	<li> <a href="#">${pageContext.request.remoteUser}</a> </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

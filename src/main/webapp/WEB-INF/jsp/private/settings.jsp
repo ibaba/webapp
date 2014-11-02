@@ -32,7 +32,7 @@
             	<li> <c:url value="/signin" var="signinUrl"/><a href="${signinUrl}">Sign-in</a></li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
-            	<li> <a href="#">${pageContext.request.remoteUser}</a> </li>
+            	<li> <a href="#">${user.nome} ${user.sobrenome}</a> </li>
             </sec:authorize>
           </ul>
         </div><!--/.nav-collapse -->

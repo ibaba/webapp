@@ -35,9 +35,9 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
           	<li class="dropdown">
-          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">${pageContext.request.remoteUser} <span class="caret"></span></a>
+          		<a href="#" class="dropdown-toggle" data-toggle="dropdown">${user.nome} ${user.sobrenome} <span class="caret"></span></a>
           		<ul class="dropdown-menu" role="menu">
-          			<li> <c:url value="/profile" var="profileUrl"/> <a href="${profileUrl}">Profile</a></li>
+          			<li> <c:url value="/profile/${user.id}" var="profileUrl"/> <a href="${profileUrl}">Profile</a></li>
           			<li> <c:url value="/settings" var="settingsUrl"/> <a href="${settingsUrl}">Settings</a></li>
           			<li> <c:url value="/logout" var="logoutUrl"/> <a href="${logoutUrl}">Logout</a></li>
           		</ul>

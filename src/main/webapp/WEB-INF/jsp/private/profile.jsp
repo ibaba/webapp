@@ -32,7 +32,7 @@
             	<li> <c:url value="/signin" var="signinUrl"/><a href="${signinUrl}">Sign-in</a></li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
-            	<li> <a href="#">${pageContext.request.remoteUser}</a> </li>
+            	<li> <a href="#">${user.nome} ${user.sobrenome}</a> </li>
             </sec:authorize>
           </ul>
         </div><!--/.nav-collapse -->
@@ -41,10 +41,19 @@
 
     <div class="container">
 
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
+      <sec:authorize access="isAnonymous()">
+	      <div class="starter-template">
+	        <h1>isAnonymous</h1>
+	        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+	      </div>
+      </sec:authorize>
+      
+      <sec:authorize access="isAuthenticated()">
+	      <div class="starter-template">
+	        <h1>isAuthenticated</h1>
+	        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+	      </div>
+      </sec:authorize>
 
     </div><!-- /.container -->
 
