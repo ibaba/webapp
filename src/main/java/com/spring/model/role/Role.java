@@ -15,10 +15,16 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import com.spring.config.annotation.form_control.Input;
 import com.spring.config.annotation.form_control.Select;
+import com.spring.config.generic.persistence.Model;
 import com.spring.model.permission.Permission;
 
 @Entity
-public class Role {
+public class Role extends Model {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -55,6 +61,11 @@ public class Role {
 
 	public void setPermission(List<Permission> permission) {
 		this.permission = permission;
+	}
+
+	@Override
+	public String toString() {
+		return nome;
 	}
 	
 }
