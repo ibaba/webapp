@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import com.spring.ApplicationContextHolder;
 import com.spring.config.annotation.form_control.Select;
 import com.spring.config.taglib.form.FormTag;
 
@@ -16,7 +17,7 @@ public class SelectTag extends TagSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	public int doStartTag() {
 		JspWriter out = pageContext.getOut();
 		try {
@@ -37,7 +38,7 @@ public class SelectTag extends TagSupport {
 					List<?> value = value();
 					if(value != null) {
 						for(Object object2:value) {
-							if(object == object2)
+							if(object.equals(object2))
 								out.println("      <option value=\""+id+"\" selected=\"selected\">"+nome);
 							else
 								out.println("      <option value=\""+id+"\">"+nome);
@@ -47,6 +48,8 @@ public class SelectTag extends TagSupport {
 					}
 				}
 			}
+			
+			out.println("   </select>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -56,7 +59,6 @@ public class SelectTag extends TagSupport {
 	public int doEndTag() {
 		JspWriter out = pageContext.getOut();
 		try {
-			out.println("   </select>");
 			out.println("</field-box>");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -91,7 +93,11 @@ public class SelectTag extends TagSupport {
 	}
 	
 	public List<?> list_values() throws Exception {
-		return null;
+		String nome = classe().getSimpleName();
+		Class<?> clazz = Class.forName("com.spring.model."+nome.toLowerCase()+"."+nome+"Service");
+		Object object = clazz.newInstance();
+		ApplicationContextHolder.getContext().getAutowireCapableBeanFactory().autowireBean(object);
+		return (List<?>) object.getClass().getMethod("lista").invoke(object);
 	}
 	
 	private String caps(String string) {
