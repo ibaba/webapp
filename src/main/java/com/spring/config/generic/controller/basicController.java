@@ -3,6 +3,7 @@ package com.spring.config.generic.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,19 +63,19 @@ public class basicController<E> {
 	
 	@RequestMapping(value = "insert", method=RequestMethod.POST)
 	@ResponseBody
-	public void cadastro(@ModelAttribute("object") E object) {
+	public void cadastro(@ModelAttribute("object") E object, BindingResult result) {
 		serv.insert(object);
 	}
 	
 	@RequestMapping(value = "update", method=RequestMethod.POST)
 	@ResponseBody
-	public void alteracao(@ModelAttribute("object") E object) {
+	public void alteracao(@ModelAttribute("object") E object, BindingResult result) {
 		serv.update(object);
 	}
 	
 	@RequestMapping(value = "delete", method=RequestMethod.POST)
 	@ResponseBody
-	public void remocao(@ModelAttribute("object") E object) {
+	public void remocao(@ModelAttribute("object") E object, BindingResult result) {
 		serv.remove(object);
 	}
 	

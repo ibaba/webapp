@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="container">
-    	<div class="alert alert-success" role="alert"><strong>Erro</strong> ${erro.message}</div>
+    	<div class="alert alert-info" role="alert"><strong>Erro</strong> ${erro.message}</div>
     	
     	<div class="jumbotron">
     		<c:forEach var="item" items="${erro.stacktrace}">
