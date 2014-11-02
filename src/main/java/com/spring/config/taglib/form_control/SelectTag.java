@@ -29,10 +29,23 @@ public class SelectTag extends TagSupport {
 				out.println("   <select name=\""+name()+"\" class=\"form-control\">");
 			
 			List<?> lista = list_values();
-			for(int i=0; i<lista.size(); i++) {
-				Integer id = (Integer) lista.get(i).getClass().getMethod("getId").invoke(lista.get(i));
-				String nome = lista.get(i).toString();
-				out.println("      <option value=\""+id+"\">"+nome+"</option>");
+			if(lista != null) {
+				for(Object object:lista) {
+					Integer id = (Integer) object.getClass().getMethod("getId").invoke(object);
+					String nome = object.toString();
+					
+					List<?> value = value();
+					if(value != null) {
+						for(Object object2:value) {
+							if(object == object2)
+								out.println("<option value=\""+id+"\" selected=\"selected\">"+nome+"</option>");
+							else
+								out.println("<option value=\""+id+"\">"+nome+"</option>");
+						}
+					} else {
+						out.println("<option value=\""+id+"\">"+nome+"</option>");
+					}
+				}
 			}
 			
 			out.println("   </select>");
@@ -74,14 +87,12 @@ public class SelectTag extends TagSupport {
 	}
 	
 	public List<?> value() throws Exception {
-		List<Object> lista = new ArrayList<Object>();
 		Object object = pageContext.findAttribute("command");
-		lista.add( object.getClass().getMethod("get"+caps(field().getName())).invoke(object) );
-		return lista;
+		return (List<?>) object.getClass().getMethod("get"+caps(field().getName())).invoke(object);
 	}
 	
 	public List<?> list_values() throws Exception {
-		return new ArrayList<Object>();
+		return null;
 	}
 	
 	private String caps(String string) {
