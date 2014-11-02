@@ -35,10 +35,10 @@ public class SelectTag extends TagSupport {
 					Integer id = (Integer) object.getClass().getMethod("getId").invoke(object);
 					String nome = object.toString();
 					
-					List<?> value = value();
-					if(value != null) {
-						for(Object object2:value) {
-							if(object.equals(object2))
+					List<?> values = value();
+					if(values != null) {
+						for(Object object2:values) {
+							if(object.toString().equals(object2.toString()))
 								out.println("      <option value=\""+id+"\" selected=\"selected\">"+nome);
 							else
 								out.println("      <option value=\""+id+"\">"+nome);
