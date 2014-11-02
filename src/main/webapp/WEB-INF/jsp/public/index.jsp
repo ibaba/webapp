@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <title>Project name</title>
 
     <!-- Bootstrap core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,20 +29,18 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <c:forEach var="item" items="${menu}">
+            	<c:url value="/${item.simpleName}/index" var="url"/>
+            	<li><a class="popup" data-target="${item.simpleName}" href="${url}">${item.simpleName}</a></li>
+            </c:forEach>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
             <sec:authorize access="isAnonymous()">
             	<li> <c:url value="/signin" var="signinUrl"/><a href="${signinUrl}">Sign-in</a></li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
             	<li> <a href="#">${pageContext.request.remoteUser}</a> </li>
             </sec:authorize>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
