@@ -73,12 +73,14 @@ public class SelectTag extends TagSupport {
 		return field().getName();
 	}
 	
-	public Object value() throws Exception {
+	public List<?> value() throws Exception {
+		List<Object> lista = new ArrayList<Object>();
 		Object object = pageContext.findAttribute("command");
-		return object.getClass().getMethod("get"+caps(field().getName())).invoke(object);
+		lista.add( object.getClass().getMethod("get"+caps(field().getName())).invoke(object) );
+		return lista;
 	}
 	
-	public List<?> list_values() {
+	public List<?> list_values() throws Exception {
 		return new ArrayList<Object>();
 	}
 	
