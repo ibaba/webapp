@@ -1,12 +1,11 @@
 package com.spring.model.settings.geral;
 
-import java.util.Properties;
-
 import com.spring.config.annotation.form.FormSettings;
 import com.spring.config.annotation.form_control.Input;
+import com.spring.config.generic.persistence.Settings;
 
 @FormSettings
-public class Geral extends Properties {
+public class Geral extends Settings {
 
 	/**
 	 * 
@@ -21,9 +20,9 @@ public class Geral extends Properties {
 	
 	@Input(label = "E-mail", type = "email")
 	private String email;
-
+	
 	public String getTitulo() {
-		return titulo;
+		return this.getProperty("geral.titulo");
 	}
 
 	public void setTitulo(String titulo) {
@@ -31,7 +30,7 @@ public class Geral extends Properties {
 	}
 
 	public String getAutor() {
-		return autor;
+		return this.getProperty("geral.autor");
 	}
 
 	public void setAutor(String autor) {
@@ -39,7 +38,7 @@ public class Geral extends Properties {
 	}
 
 	public String getEmail() {
-		return email;
+		return this.getProperty("geral.email");
 	}
 
 	public void setEmail(String email) {

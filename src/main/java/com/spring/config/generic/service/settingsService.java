@@ -13,28 +13,6 @@ public class settingsService<E extends Properties> {
 		this.clazz = clazz;
 	}
 	
-	public String read_property(String key) throws Exception {
-		return load_properties().getProperty(key);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void save_property(String key, String value) throws Exception {
-		Properties props = load_properties();
-		props.setProperty(key, value);
-		save_properties((E) props);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public E load_properties() throws Exception {
-		Properties props = new Properties();
-		
-		FileInputStream fos = new FileInputStream( getFilename() );
-		props.load(fos);
-		fos.close();
-		
-		return (E) props;
-	}
-	
 	public void create_properties(E props) throws Exception {
 		FileInputStream fos = new FileInputStream( getFilename() );
 		Properties props_current = new Properties();

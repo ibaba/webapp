@@ -21,9 +21,9 @@ public class One extends Properties {
 	
 	@Input(label = "Three")
 	private String three;
-
+	
 	public String getOne() {
-		return one;
+		return this.getProperty("one.one");
 	}
 
 	public void setOne(String one) {
@@ -31,7 +31,7 @@ public class One extends Properties {
 	}
 
 	public String getTwo() {
-		return two;
+		return this.getProperty("one.two");
 	}
 
 	public void setTwo(String two) {
@@ -39,7 +39,7 @@ public class One extends Properties {
 	}
 
 	public String getThree() {
-		return three;
+		return this.getProperty("one.three");
 	}
 
 	public void setThree(String three) {
