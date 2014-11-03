@@ -26,7 +26,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><x:Settings key="geral" value="titulo"/></a>
+          <a class="navbar-brand" href="#"><x:Settings key="geral.titulo"/></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

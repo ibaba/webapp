@@ -48,9 +48,5 @@
 			<name>key</name>
 			<required>true</required>
 		</attribute>
-		<attribute>
-			<name>value</name>
-			<required>true</required>
-		</attribute>
 	</tag>
 </taglib>

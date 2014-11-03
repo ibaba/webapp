@@ -17,8 +17,6 @@ public class SettingsTag extends TagSupport {
 
 	private String key;
 	
-	private String value;
-	
 	public int doStartTag() {
 		JspWriter out = pageContext.getOut();
 		try {
@@ -47,31 +45,25 @@ public class SettingsTag extends TagSupport {
 		this.key = key;
 	}
 
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-	
 	private String value() throws Exception {
 		Properties props = new Properties();
 		
-		String attr = key+"."+value;
-		String filename = System.getProperty("user.home")+File.separator+".webapp"+File.separator+"webapp.preferences";
-		File file = new File( filename );
+		File file = new File( getFilename() );
 		if( file.exists() ) {
-			FileInputStream fos = new FileInputStream( filename );
+			FileInputStream fos = new FileInputStream( getFilename() );
 			props.load(fos);
 			fos.close();
 		} else {
-			FileOutputStream fos = new FileOutputStream( filename );
+			FileOutputStream fos = new FileOutputStream( getFilename() );
 			props.store(fos, "settings");
 			fos.close();
 		}
 		
-		return props.getProperty(attr);
+		return props.getProperty(key);
+	}
+	
+	private String getFilename() {
+		return System.getProperty("user.home")+File.separator+".webapp"+File.separator+"webapp.preferences";
 	}
 
 }

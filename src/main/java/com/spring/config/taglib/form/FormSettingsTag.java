@@ -31,15 +31,11 @@ public class FormSettingsTag extends FormTag {
 			else
 				action = pageContext.getServletContext().getContextPath() + "/" + classe().getSimpleName() + "/create";
 			
-			out.println("<form class=\"form\" role=\"form\" method=\"post\" action=\""+action+"\">");
+			out.println("<form id=\"command\" class=\"form\" role=\"form\" method=\"post\" action=\""+action+"\">");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return EVAL_BODY_INCLUDE;
-	}
-	
-	private String getFilename() {
-		return System.getProperty("user.home")+File.separator+".webapp"+File.separator+"webapp.preferences";
 	}
 
 	public int doEndTag() {
@@ -71,6 +67,10 @@ public class FormSettingsTag extends FormTag {
 
 	public void setClasse(String classe) {
 		this.classe = classe;
+	}
+	
+	private String getFilename() {
+		return System.getProperty("user.home")+File.separator+".webapp"+File.separator+"webapp.preferences";
 	}
 
 }

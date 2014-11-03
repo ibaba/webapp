@@ -1,11 +1,12 @@
 package com.spring.model.settings.geral;
 
+import java.util.Properties;
+
 import com.spring.config.annotation.form.FormSettings;
 import com.spring.config.annotation.form_control.Input;
-import com.spring.config.generic.persistence.Settings;
 
 @FormSettings
-public class Geral extends Settings {
+public class Geral extends Properties {
 
 	/**
 	 * 
