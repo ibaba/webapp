@@ -26,16 +26,19 @@ public class settingsController<E extends Properties> {
 	}
 	
 	@RequestMapping(value = "insert", method=RequestMethod.POST)
+	@ResponseBody
 	public void insert(@ModelAttribute("object") E object, BindingResult result) throws Exception {
 		serv.create_properties(object);
 	}
 	
 	@RequestMapping(value = "update", method=RequestMethod.POST)
+	@ResponseBody
 	public void update(@ModelAttribute("object") E object, BindingResult result) throws Exception {
 		serv.save_properties(object);
 	}
 	
 	@RequestMapping(value = "delete", method=RequestMethod.POST)
+	@ResponseBody
 	public void delete(@ModelAttribute("object") E object, BindingResult result) throws Exception {
 		serv.delete_properties(object);
 	}
