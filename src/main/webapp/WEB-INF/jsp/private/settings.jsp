@@ -58,40 +58,42 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-  <c:forEach var="item" items="${settings}" varStatus="status">
-	<x:FormSettings classe="${item.simpleName}">
-		<c:forEach var="item2" items="${item.declaredFields}" varStatus="status2">
-			<c:set var="index" value="${status2.index}"/>
-			<c:forEach var="item3" items="${item2.declaredAnnotations}">
-				<c:choose>
-					<c:when test="${item3.annotationType().simpleName == 'Checkbox'}">
-						<x:Checkbox/>
-					</c:when>
-					<c:when test="${item3.annotationType().simpleName == 'DataList'}">
-						<x:DataList/>
-					</c:when>
-					<c:when test="${item3.annotationType().simpleName == 'Input'}">
-						<x:Input/>
-					</c:when>
-					<c:when test="${item3.annotationType().simpleName == 'Radiobutton'}">
-						<x:Radiobutton/>
-					</c:when>
-					<c:when test="${item3.annotationType().simpleName == 'Select'}">
-						<x:Select/>
-					</c:when>
-					<c:when test="${item3.annotationType().simpleName == 'Textarea'}">
-						<x:Textarea/>
-					</c:when>
-				</c:choose>
-			</c:forEach>
-		</c:forEach>
-		
-		<button type="submit" class="btn btn-default">Salvar</button>
-		
-		<div class="alert alert-success" id="yes" role="alert" style="display: none;">Formul&aacute;rio enviado com sucesso!</div>
-		<div class="alert alert-danger" id="not" role="alert" style="display: none;">...</div>
-	</x:FormSettings>
-  </c:forEach>
+	<c:forEach var="item" items="${settings}" varStatus="status">
+		<div role="tabpanel" class="tab-pane <c:if test="${status.index == 1}">active</c:if>" id="#{item.simpleName}">
+			<x:FormSettings classe="${item.simpleName}">
+				<c:forEach var="item2" items="${item.declaredFields}" varStatus="status2">
+					<c:set var="index" value="${status2.index}"/>
+					<c:forEach var="item3" items="${item2.declaredAnnotations}">
+						<c:choose>
+							<c:when test="${item3.annotationType().simpleName == 'Checkbox'}">
+								<x:Checkbox/>
+							</c:when>
+							<c:when test="${item3.annotationType().simpleName == 'DataList'}">
+								<x:DataList/>
+							</c:when>
+							<c:when test="${item3.annotationType().simpleName == 'Input'}">
+								<x:Input/>
+							</c:when>
+							<c:when test="${item3.annotationType().simpleName == 'Radiobutton'}">
+								<x:Radiobutton/>
+							</c:when>
+							<c:when test="${item3.annotationType().simpleName == 'Select'}">
+								<x:Select/>
+							</c:when>
+							<c:when test="${item3.annotationType().simpleName == 'Textarea'}">
+								<x:Textarea/>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+				</c:forEach>
+				
+				<button type="submit" class="btn btn-default">Salvar</button>
+				
+				<div class="alert alert-success" id="yes" role="alert" style="display: none;">Formul&aacute;rio enviado com sucesso!</div>
+				<div class="alert alert-danger" id="not" role="alert" style="display: none;">...</div>
+			</x:FormSettings>
+		</div>
+	</c:forEach>
 </div>
 
     </div><!-- /.container -->
