@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="/WEB-INF/customTag.tld" prefix="x" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,7 +26,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#"><x:Settings key="geral" value="titulo"/></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
