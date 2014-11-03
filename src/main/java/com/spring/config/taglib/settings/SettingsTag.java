@@ -2,6 +2,7 @@ package com.spring.config.taglib.settings;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Properties;
 
 import javax.servlet.jsp.JspWriter;
@@ -59,9 +60,16 @@ public class SettingsTag extends TagSupport {
 		
 		String attr = key+"."+value;
 		String filename = System.getProperty("user.home")+File.separator+".webapp"+File.separator+"webapp.preferences";
-		FileInputStream fos = new FileInputStream( filename );
-		props.load(fos);
-		fos.close();
+		File file = new File( filename );
+		if( file.exists() ) {
+			FileInputStream fos = new FileInputStream( filename );
+			props.load(fos);
+			fos.close();
+		} else {
+			FileOutputStream fos = new FileOutputStream( filename );
+			props.store(fos, "settings");
+			fos.close();
+		}
 		
 		return props.getProperty(attr);
 	}
