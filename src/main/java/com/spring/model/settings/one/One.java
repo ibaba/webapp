@@ -2,8 +2,10 @@ package com.spring.model.settings.one;
 
 import java.util.Properties;
 
+import com.spring.config.annotation.form.FormSettings;
 import com.spring.config.annotation.form_control.Input;
 
+@FormSettings
 public class One extends Properties {
 
 	/**

@@ -2,8 +2,10 @@ package com.spring.model.settings.geral;
 
 import java.util.Properties;
 
+import com.spring.config.annotation.form.FormSettings;
 import com.spring.config.annotation.form_control.Input;
 
+@FormSettings
 public class Geral extends Properties {
 
 	/**
