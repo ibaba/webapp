@@ -59,7 +59,7 @@
 <!-- Tab panes -->
 <div class="tab-content">
 	<c:forEach var="item" items="${settings}" varStatus="status">
-		<div role="tabpanel" class="tab-pane <c:if test="${status.index == 1}">active</c:if>" id="#{item.simpleName}">
+		<div role="tabpanel" class="tab-pane <c:if test="${status.index == 1}">active</c:if>" id="${item.simpleName}">
 			<x:FormSettings classe="${item.simpleName}">
 				<c:forEach var="item2" items="${item.declaredFields}" varStatus="status2">
 					<c:set var="index" value="${status2.index}"/>
