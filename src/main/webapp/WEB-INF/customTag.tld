@@ -8,6 +8,16 @@
 		<tag-class>com.spring.config.taglib.form.FormTag</tag-class>
 	</tag>
 	<tag>
+		<name>FormSettings</name>
+		<tag-class>com.spring.config.taglib.form.FormSettingsTag</tag-class>
+		<attribute>
+			<name>classe</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
 		<name>Checkbox</name>
 		<tag-class>com.spring.config.taglib.form_control.CheckboxTag</tag-class>
 	</tag>

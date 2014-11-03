@@ -1,7 +1,7 @@
 package com.spring.config.taglib.settings;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.util.Properties;
 
 import javax.servlet.jsp.JspWriter;
@@ -43,8 +43,8 @@ public class SettingsTag extends SimpleTagSupport {
 		
 		String attr = key+"."+value;
 		String filename = System.getProperty("user.home")+File.separator+".webapp"+File.separator+"webapp.preferences";
-		FileOutputStream fos = new FileOutputStream( filename );
-		props.store( fos, "settings" );
+		FileInputStream fos = new FileInputStream( filename );
+		props.load(fos);
 		fos.close();
 		
 		return props.getProperty(attr);

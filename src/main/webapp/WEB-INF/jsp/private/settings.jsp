@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="/WEB-INF/customTag.tld" prefix="x" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,10 +42,99 @@
 
     <div class="container">
 
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <c:forEach var="item" items="${settings}" varStatus="status">
+  	<c:choose>
+  		<c:when test="${status.index == 1}">
+  			<li role="presentation" class="active"><a href="#${item.simpleName}" role="tab" data-toggle="tab">${item.simpleName}</a></li>
+  		</c:when>
+  		<c:otherwise>
+  			<li role="presentation"><a href="#${item.simpleName}" role="tab" data-toggle="tab">${item.simpleName}</a></li>
+  		</c:otherwise>
+  	</c:choose>
+  </c:forEach>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <c:forEach var="item" items="${settings}" varStatus="status">
+  	<c:choose>
+  		<c:when test="${status.index == 1}">
+  			<div role="tabpanel" class="tab-pane active" id="${item.simpleName}">
+  				<x:FormSettings classe="${item.simpleName}">
+					<c:forEach var="item2" items="${item.declaredFields}" varStatus="status2">
+						<c:set var="index" value="${status2.index}"/>
+						<c:forEach var="item3" items="${item2.declaredAnnotations}">
+							<c:choose>
+								<c:when test="${item2.annotationType().simpleName == 'Checkbox'}">
+									<x:Checkbox/>
+								</c:when>
+								<c:when test="${item2.annotationType().simpleName == 'DataList'}">
+									<x:DataList/>
+								</c:when>
+								<c:when test="${item2.annotationType().simpleName == 'Input'}">
+									<x:Input/>
+								</c:when>
+								<c:when test="${item2.annotationType().simpleName == 'Radiobutton'}">
+									<x:Radiobutton/>
+								</c:when>
+								<c:when test="${item2.annotationType().simpleName == 'Select'}">
+									<x:Select/>
+								</c:when>
+								<c:when test="${item2.annotationType().simpleName == 'Textarea'}">
+									<x:Textarea/>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+					</c:forEach>
+					
+					<button type="submit" class="btn btn-default">Salvar</button>
+					
+					<div class="alert alert-success" id="yes" role="alert" style="display: none;">Formul&aacute;rio enviado com sucesso!</div>
+					<div class="alert alert-danger" id="not" role="alert" style="display: none;">...</div>
+  				</x:FormSettings>
+  			</div>
+  		</c:when>
+  		<c:otherwise>
+  			<div role="tabpanel" class="tab-pane" id="${item.simpleName}">
+  				<x:FormSettings classe="${item.simpleName}">
+					<c:forEach var="item2" items="${item.declaredFields}" varStatus="status2">
+						<c:set var="index" value="${status2.index}"/>
+						<c:forEach var="item3" items="${item2.declaredAnnotations}">
+							<c:choose>
+								<c:when test="${item2.annotationType().simpleName == 'Checkbox'}">
+									<x:Checkbox/>
+								</c:when>
+								<c:when test="${item2.annotationType().simpleName == 'DataList'}">
+									<x:DataList/>
+								</c:when>
+								<c:when test="${item2.annotationType().simpleName == 'Input'}">
+									<x:Input/>
+								</c:when>
+								<c:when test="${item2.annotationType().simpleName == 'Radiobutton'}">
+									<x:Radiobutton/>
+								</c:when>
+								<c:when test="${item2.annotationType().simpleName == 'Select'}">
+									<x:Select/>
+								</c:when>
+								<c:when test="${item2.annotationType().simpleName == 'Textarea'}">
+									<x:Textarea/>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+					</c:forEach>
+					
+					<button type="submit" class="btn btn-default">Salvar</button>
+					
+					<div class="alert alert-success" id="yes" role="alert" style="display: none;">Formul&aacute;rio enviado com sucesso!</div>
+					<div class="alert alert-danger" id="not" role="alert" style="display: none;">...</div>
+  				</x:FormSettings>
+  			</div>
+  		</c:otherwise>
+  	</c:choose>
+  </c:forEach>
+</div>
 
     </div><!-- /.container -->
 
