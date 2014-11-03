@@ -31,4 +31,16 @@
 		<name>Textarea</name>
 		<tag-class>com.spring.config.taglib.form_control.TextareaTag</tag-class>
 	</tag>
+	<tag>
+		<name>Settings</name>
+		<tag-class>com.spring.config.taglib.settings.SettingsTag</tag-class>
+		<attribute>
+			<name>key</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+		</attribute>
+	</tag>
 </taglib>
