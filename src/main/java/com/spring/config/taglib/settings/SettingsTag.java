@@ -5,21 +5,37 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
+import javax.servlet.jsp.tagext.TagSupport;
 
-public class SettingsTag extends SimpleTagSupport {
+public class SettingsTag extends TagSupport {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private String key;
 	
 	private String value;
 	
-	public void doTag() {
-		JspWriter out = getJspContext().getOut();
+	public int doStartTag() {
+		JspWriter out = pageContext.getOut();
 		try {
-			out.println(value());
+			out.print(value());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return EVAL_BODY_INCLUDE;
+	}
+	
+	public int doEndTag() {
+		JspWriter out = pageContext.getOut();
+		try {
+			out.print("");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return EVAL_PAGE;
 	}
 	
 	public String getKey() {
