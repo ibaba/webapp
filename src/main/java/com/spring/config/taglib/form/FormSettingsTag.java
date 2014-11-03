@@ -1,5 +1,6 @@
 package com.spring.config.taglib.form;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
@@ -19,11 +20,17 @@ public class FormSettingsTag extends FormTag {
 		JspWriter out = pageContext.getOut();
 		try {
 			pageContext.setAttribute("command", classe().newInstance());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			String action = pageContext.getServletContext().getContextPath() + "/" + classe().getSimpleName() + "/update";
+			
+			File file = new File( getFilename() );
+			String action;
+			if(file.exists())
+				if(pageContext.findAttribute("action") == null)
+					action = pageContext.getServletContext().getContextPath() + "/" + classe().getSimpleName() + "/update";
+				else
+					action = pageContext.getServletContext().getContextPath() + "/" + classe().getSimpleName() + "/delete";
+			else
+				action = pageContext.getServletContext().getContextPath() + "/" + classe().getSimpleName() + "/create";
+			
 			out.println("<form class=\"form\" role=\"form\" method=\"post\" action=\""+action+"\">");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -31,6 +38,10 @@ public class FormSettingsTag extends FormTag {
 		return EVAL_BODY_INCLUDE;
 	}
 	
+	private String getFilename() {
+		return System.getProperty("user.home")+File.separator+".webapp"+File.separator+"webapp.preferences";
+	}
+
 	public int doEndTag() {
 		JspWriter out = pageContext.getOut();
 		try {

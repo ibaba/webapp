@@ -22,7 +22,7 @@ public class Geral extends Settings {
 	private String email;
 	
 	public String getTitulo() {
-		return this.getProperty("geral.titulo");
+		return titulo;
 	}
 
 	public void setTitulo(String titulo) {
@@ -30,7 +30,7 @@ public class Geral extends Settings {
 	}
 
 	public String getAutor() {
-		return this.getProperty("geral.autor");
+		return autor;
 	}
 
 	public void setAutor(String autor) {
@@ -38,7 +38,7 @@ public class Geral extends Settings {
 	}
 
 	public String getEmail() {
-		return this.getProperty("geral.email");
+		return email;
 	}
 
 	public void setEmail(String email) {

@@ -27,7 +27,7 @@ public abstract class Settings extends Properties {
 		} else {
 			FileOutputStream outStream = new FileOutputStream( getFilename() );
 			for(String p:fields()) {
-				props.setProperty(p, null);
+				props.setProperty(p, "---");
 			}
 			props.store(outStream, "settings");
 			outStream.close();
