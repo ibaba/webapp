@@ -25,29 +25,28 @@ public class SelectTag extends TagSupport {
 			
 			out.println("   <label>"+label()+"</label>");
 			if(field().getType() == List.class || field().getType() == ArrayList.class )
-				out.println("   <select name=\""+name()+"\" multiple=\"multiple\" class=\"form-control\">");
+				out.println("   <select name=\""+name()+".id\" multiple=\"multiple\" class=\"form-control\">");
 			else
-				out.println("   <select name=\""+name()+"\" class=\"form-control\">");
+				out.println("   <select name=\""+name()+".id\" class=\"form-control\">");
 			
 			List<?> lista = list_values();
-			if(lista != null) {
+			if(lista != null)
 				for(Object object:lista) {
 					Integer id = (Integer) object.getClass().getMethod("getId").invoke(object);
 					String nome = object.toString();
 					
 					List<?> values = value();
 					if(values != null) {
-						for(Object object2:values) {
-							if(object.toString().equals(object2.toString()))
-								out.println("      <option value=\""+id+"\" selected=\"selected\">"+nome);
-							else
-								out.println("      <option value=\""+id+"\">"+nome);
-						}
+						boolean existe = false;
+						for(Object object2:values)
+							if(object.toString().equals(object2.toString())) existe = true;
+						
+						if(existe) out.println("      <option value=\""+id+"\" selected=\"selected\">"+nome+"</option>");
+						else out.println("      <option value=\""+id+"\">"+nome+"</option>");
 					} else {
-						out.println("      <option value=\""+id+"\">"+nome);
+						out.println("      <option value=\""+id+"\">"+nome+"</option>");
 					}
 				}
-			}
 			
 			out.println("   </select>");
 		} catch (Exception e) {
