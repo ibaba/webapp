@@ -5,9 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.TagSupport;
 
-public class FormSettingsTag extends TagSupport {
+public class FormSettingsTag extends FormTag {
 
 	/**
 	 * 
@@ -37,11 +36,16 @@ public class FormSettingsTag extends TagSupport {
 		return EVAL_PAGE;
 	}
 	
-	public Class<?> classe() throws Exception {
-		return Class.forName("com.spring.model.settings."+getClasse().toLowerCase()+"."+getClasse());
+	public Class<?> classe() {
+		try {
+			return Class.forName("com.spring.model.settings."+getClasse().toLowerCase()+"."+getClasse());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
-	public List<Field> fields() throws Exception {
+	public List<Field> fields() {
 		return Arrays.asList(classe().getDeclaredFields());
 	}
 
