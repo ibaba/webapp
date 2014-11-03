@@ -18,6 +18,11 @@ public class FormSettingsTag extends FormTag {
 	public int doStartTag() {
 		JspWriter out = pageContext.getOut();
 		try {
+			pageContext.setAttribute("command", classe().newInstance());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
 			String action = pageContext.getServletContext().getContextPath() + "/" + classe().getSimpleName() + "/update";
 			out.println("<form class=\"form\" role=\"form\" method=\"post\" action=\""+action+"\">");
 		} catch (Exception e) {
