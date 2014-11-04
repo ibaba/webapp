@@ -73,31 +73,31 @@
 		    <li class="list-group-item">
 		    	<field-box>
 		    		<label>Nome:</label>
-		    		<input type="text" name="nome" value="${user.nome}"/>
+		    		<input type="text" name="nome" value="${user.nome}" class="form-control"/>
 		    	</field-box>
 	    	</li>
 		    <li class="list-group-item">
 		    	<field-box>
 		    		<label>Sobrenome:</label>
-		    		<input type="text" name="sobrenome" value="${user.sobrenome}"/>
+		    		<input type="text" name="sobrenome" value="${user.sobrenome}" class="form-control"/>
 		    	</field-box>
 		    </li>
 		    <li class="list-group-item">
 		    	<field-box>
 		    		<label>login:</label>
-		    		<input type="text" name="login" value="${user.login}"/>
+		    		<input type="text" name="login" value="${user.login}" class="form-control"/>
 		    	</field-box>
 		    </li>
 		    <li class="list-group-item">
 		    	<field-box>
 		    		<label>Senha:</label>
-		    		<input type="password" name="senha" value="${user.senha}"/>
+		    		<input type="password" name="senha" value="${user.senha}" class="form-control"/>
 		    	</field-box>
 		    </li>
 		    <li class="list-group-item">
 		    	<field-box>
 		    		<label>E-mail:</label>
-		    		<input type="email" name="email" value="${user.email}"/>
+		    		<input type="email" name="email" value="${user.email}" class="form-control"/>
 		    	</field-box>
 		    </li>
 		    <li class="list-group-item">
