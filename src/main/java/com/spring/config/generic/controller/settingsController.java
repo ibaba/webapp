@@ -29,7 +29,6 @@ public class settingsController<E> {
 	@RequestMapping(value = "update", method=RequestMethod.POST)
 	@ResponseBody
 	public void update(@ModelAttribute("object") E object, BindingResult result) throws Exception {
-		System.out.println("settingsController | object -> "+object);
 		serv.save_properties(object);
 	}
 	
