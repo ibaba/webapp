@@ -11,6 +11,8 @@ import java.util.Properties;
 @SuppressWarnings("serial")
 public abstract class Settings extends Properties {
 	
+	public abstract String toString();
+	
 	@SuppressWarnings("unused")
 	private String read_property(String key) throws Exception {
 		return load_properties().getProperty(key);

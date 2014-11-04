@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.Properties;
 
 public class settingsService<E> {
@@ -19,20 +18,14 @@ public class settingsService<E> {
 		Properties nova = new Properties();
 		FileOutputStream outStream = new FileOutputStream( getFilename() );
 		
-		Field fields[] = props.getClass().getDeclaredFields();
-		Method methods[] = props.getClass().getMethods();
-		int field_counter = 0;
-		for(int i=0; i<methods.length; i++) {
-			if(methods[i].getName().substring(0, 3).equals("get")) {
-				nova.setProperty(fields[field_counter++].getName(), methods[i].invoke(props).toString());
-			}
-		}
+		//
 		
 		nova.store(outStream, "settings");
 		outStream.close();
 	}
 	
 	public void save_properties(E props) throws Exception {
+		System.out.println("props = "+props);
 		Properties current = new Properties();
 		
 		System.out.println("inStream");
@@ -40,15 +33,7 @@ public class settingsService<E> {
 		current.load(inStream);
 		inStream.close();
 		
-		Field fields[] = props.getClass().getDeclaredFields();
-		Method methods[] = props.getClass().getMethods();
-		int field_counter = 0;
-		for(int i=0; i<methods.length; i++) {
-			if(methods[i].getName().substring(0, 3).equals("get")) {
-				System.out.println(fields[field_counter].getName() + " = " + methods[i].invoke(props).toString());
-				current.setProperty(fields[field_counter++].getName(), methods[i].invoke(props).toString());
-			}
-		}
+		//
 		
 		System.out.println("outStream");
 		FileOutputStream outStream = new FileOutputStream( getFilename() );
@@ -65,7 +50,7 @@ public class settingsService<E> {
 		
 		Field fields[] = props.getClass().getDeclaredFields();
 		for(int i=0; i<fields.length; i++) {
-			current.remove(fields[i].getName());
+			current.remove(props.getClass().getSimpleName()+"."+fields[i].getName());
 		}
 		
 		FileOutputStream outStream = new FileOutputStream( getFilename() );

@@ -1,25 +1,24 @@
 package com.spring.model.settings.one;
 
-import java.util.Properties;
-
 import com.spring.config.annotation.form.FormSettings;
 import com.spring.config.annotation.form_control.Input;
+import com.spring.config.annotation.settings.Property;
+import com.spring.config.generic.persistence.Settings;
 
+@SuppressWarnings("serial")
 @FormSettings
-public class One extends Properties {
+public class One extends Settings {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	@Input(label = "One")
+	@Property(key = "one.one")
 	private String one;
 	
 	@Input(label = "Two")
+	@Property(key = "one.two")
 	private String two;
 	
 	@Input(label = "Three")
+	@Property(key = "one.three")
 	private String three;
 	
 	public String getOne() {
@@ -44,6 +43,11 @@ public class One extends Properties {
 
 	public void setThree(String three) {
 		this.three = three;
+	}
+
+	@Override
+	public String toString() {
+		return "{"+one+", "+two+", "+three+"}";
 	}
 	
 
