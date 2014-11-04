@@ -1,5 +1,7 @@
 package com.spring.model.settings.geral;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.spring.config.annotation.form.FormSettings;
 import com.spring.config.annotation.form_control.Input;
 import com.spring.config.annotation.settings.Property;
@@ -11,14 +13,17 @@ public class Geral extends Settings {
 
 	@Input(label = "Titulo")
 	@Property(key = "geral.titulo")
+	@Value(value = "${geral.titulo}")
 	private String titulo;
 	
 	@Input(label = "Autor")
 	@Property(key = "geral.autor")
+	@Value(value = "${geral.autor}")
 	private String autor;
 	
 	@Input(label = "E-mail", type = "email")
 	@Property(key = "geral.email")
+	@Value(value = "${geral.email}")
 	private String email;
 	
 	public String getTitulo() {
