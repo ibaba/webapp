@@ -25,12 +25,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><x:Settings key="geral.titulo"/> | Perfil</a>
+          <c:url value="/" var="indexUrl"/><a class="navbar-brand" href="${indexUrl}"><x:Settings key="geral.titulo"/> | Perfil</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <sec:authorize access="isAnonymous()">
-            	<li> <c:url value="/signin" var="signinUrl"/><a href="${signinUrl}">Sign-in</a></li>
+            	<li> <c:url value="/signin" var="signinUrl"/><a href="${signinUrl}">Entrar</a></li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
             	<li> <c:url value="/admin" var="adminUrl"/><a href="${adminUrl}">${user.nome} ${user.sobrenome}</a> </li>
@@ -42,10 +42,12 @@
 
     <div class="container">
 
+      <hr/>
+      
       <sec:authorize access="isAnonymous()">
 		<div class="panel panel-default">
 		  <!-- Default panel contents -->
-		  <div class="panel-heading">Perfil do usu&aacute;io ${user.login}</div>
+		  <div class="panel-heading"><h3>Perfil do usu&aacute;rio <strong>${user.login}</strong></h3></div>
 		  <div class="panel-body">
 		    <p>...</p>
 		  </div>
@@ -62,7 +64,7 @@
       <sec:authorize access="isAuthenticated()">
 		<div class="panel panel-default">
 		  <!-- Default panel contents -->
-		  <div class="panel-heading">Perfil do usu&aacute;io ${user.login}</div>
+		  <div class="panel-heading"><h3>Perfil do usu&aacute;rio <strong>${user.login}</strong></h3></div>
 		  <div class="panel-body">
 		    <p>...</p>
 		  </div>

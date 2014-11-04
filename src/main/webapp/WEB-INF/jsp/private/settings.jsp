@@ -25,7 +25,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><x:Settings key="geral.titulo"/> | Configura&ccedil;&otilde;es</a>
+          <c:url value="/" var="indexUrl"/><a class="navbar-brand" href="${indexUrl}"><x:Settings key="geral.titulo"/> | Configura&ccedil;&otilde;es</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -58,6 +58,8 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
+	<hr/>
+	
 	<c:forEach var="item" items="${settings}" varStatus="status">
 		<div role="tabpanel" class="tab-pane <c:if test="${status.index == 1}">active</c:if>" id="${item.simpleName}">
 			<x:FormSettings classe="${item.simpleName}">
@@ -86,7 +88,7 @@
 						</c:choose>
 					</c:forEach>
 				</c:forEach>
-				<hr/>
+				
 				<button type="submit" class="btn btn-default">Salvar</button>
 			</x:FormSettings>
 		</div>
