@@ -1,7 +1,5 @@
 package com.spring.config.generic.controller;
 
-import java.util.Properties;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.config.generic.service.settingsService;
 
-public class settingsController<E extends Properties> {
+public class settingsController<E> {
 	
 	@Autowired
 	private settingsService<E> serv;
@@ -31,6 +29,7 @@ public class settingsController<E extends Properties> {
 	@RequestMapping(value = "update", method=RequestMethod.POST)
 	@ResponseBody
 	public void update(@ModelAttribute("object") E object, BindingResult result) throws Exception {
+		System.out.println("settingsController | object -> "+object);
 		serv.save_properties(object);
 	}
 	
