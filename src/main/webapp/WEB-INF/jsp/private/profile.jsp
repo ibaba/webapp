@@ -43,17 +43,72 @@
     <div class="container">
 
       <sec:authorize access="isAnonymous()">
-	      <div class="starter-template">
-	        <h1>isAnonymous</h1>
-	        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-	      </div>
+		<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading">Perfil do usu&aacute;io ${user.login}</div>
+		  <div class="panel-body">
+		    <p>...</p>
+		  </div>
+
+		  <ul class="list-group">
+		    <li class="list-group-item"><strong>Nome: </strong>${user.nome}</li>
+		    <li class="list-group-item"><strong>Sobrenome: </strong>${user.sobrenome}</li>
+		    <li class="list-group-item"><strong>Login: </strong>${user.login}</li>
+		    <li class="list-group-item"><strong>E-mail: </strong>${user.email}</li>
+		  </ul>
+		</div>
       </sec:authorize>
       
       <sec:authorize access="isAuthenticated()">
-	      <div class="starter-template">
-	        <h1>isAuthenticated</h1>
-	        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-	      </div>
+		<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading">Perfil do usu&aacute;io ${user.login}</div>
+		  <div class="panel-body">
+		    <p>...</p>
+		  </div>
+		
+		  <c:url value="/Usuario/update/${user.id}" var="saveProfile"/>
+		  <form class="form" role="role" method="post" action="${saveProfile}">
+		  <ul class="list-group">
+		    <li class="list-group-item">
+		    	<field-box>
+		    		<label>Nome:</label>
+		    		<input type="text" name="nome" value="${user.nome}"/>
+		    	</field-box>
+	    	</li>
+		    <li class="list-group-item">
+		    	<field-box>
+		    		<label>Sobrenome:</label>
+		    		<input type="text" name="sobrenome" value="${user.sobrenome}"/>
+		    	</field-box>
+		    </li>
+		    <li class="list-group-item">
+		    	<field-box>
+		    		<label>login:</label>
+		    		<input type="text" name="login" value="${user.login}"/>
+		    	</field-box>
+		    </li>
+		    <li class="list-group-item">
+		    	<field-box>
+		    		<label>Senha:</label>
+		    		<input type="password" name="senha" value="${user.senha}"/>
+		    	</field-box>
+		    </li>
+		    <li class="list-group-item">
+		    	<field-box>
+		    		<label>E-mail:</label>
+		    		<input type="email" name="email" value="${user.email}"/>
+		    	</field-box>
+		    </li>
+		    <li class="list-group-item">
+		    	<button type="submit" class="btn btn-default">Salvar</button>
+		    </li>
+		  </ul>
+		  </form>
+		</div>
+		
+		<div class="alert alert-success" id="yes" role="alert" style="display: none;">Formul&aacute;rio enviado com sucesso!</div>
+		<div class="alert alert-danger" id="not" role="alert" style="display: none;">...</div>
       </sec:authorize>
 
     </div><!-- /.container -->
