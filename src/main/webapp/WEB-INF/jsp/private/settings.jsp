@@ -86,15 +86,15 @@
 						</c:choose>
 					</c:forEach>
 				</c:forEach>
-				
+				<hr/>
 				<button type="submit" class="btn btn-default">Salvar</button>
-				
-				<div class="alert alert-success" id="yes" role="alert" style="display: none;">Formul&aacute;rio enviado com sucesso!</div>
-				<div class="alert alert-danger" id="not" role="alert" style="display: none;">...</div>
 			</x:FormSettings>
 		</div>
 	</c:forEach>
 </div>
+
+<div class="alert alert-success" id="yes" role="alert" style="display: none;">Formul&aacute;rio enviado com sucesso!</div>
+<div class="alert alert-danger" id="not" role="alert" style="display: none;">...</div>
 
     </div><!-- /.container -->
 
