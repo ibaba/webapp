@@ -17,17 +17,17 @@ public class One extends Settings {
 
 	@Input(label = "One")
 	@Property(key = "one.one")
-	@Value(value = "${one.one}")
+	@Value("${one.one}")
 	private String one;
 	
 	@Input(label = "Two")
 	@Property(key = "one.two")
-	@Value(value = "${one.two}")
+	@Value("${one.two}")
 	private String two;
 	
 	@Input(label = "Three")
 	@Property(key = "one.three")
-	@Value(value = "${one.three}")
+	@Value("${one.three}")
 	private String three;
 	
 	public String getOne() {

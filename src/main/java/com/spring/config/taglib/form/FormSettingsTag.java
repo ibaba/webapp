@@ -19,7 +19,9 @@ public class FormSettingsTag extends FormTag {
 	public int doStartTag() {
 		JspWriter out = pageContext.getOut();
 		try {
-			pageContext.setAttribute("command", classe().newInstance());
+			Object object = classe().newInstance();
+			pageContext.setAttribute("command", object);
+			System.out.println("command = "+object);
 			
 			File file = new File( getFilename() );
 			String action;
