@@ -1,6 +1,7 @@
 package com.spring.config.app;
 
 import java.io.File;
+import java.io.FileOutputStream;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,7 +25,19 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Bean
     static PropertySourcesPlaceholderConfigurer property() throws Exception {
     	PropertySourcesPlaceholderConfigurer propertyConfigurer = new PropertySourcesPlaceholderConfigurer();
-    	propertyConfigurer.setLocation(new FileSystemResource(System.getProperty("user.home")+File.separator+".webapp"+File.separator+"webapp.preferences"));
+    	
+    	String filename = System.getProperty("user.home")+File.separator+".webapp"+File.separator+"webapp.preferences";
+    	File file = new File( filename );
+    	if(file.exists())
+    		propertyConfigurer.setLocation( new FileSystemResource( filename ) );
+    	else {
+    		if(file.mkdir()) {
+        		FileOutputStream fos = new FileOutputStream( filename );
+        		fos.close();
+        		propertyConfigurer.setLocation( new FileSystemResource( filename ) );
+    		}
+    	}
+    	
     	return propertyConfigurer;
     }
 	

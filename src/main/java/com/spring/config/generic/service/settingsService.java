@@ -32,6 +32,7 @@ public class settingsService<E> {
 	}
 	
 	public void save_properties(E props) throws Exception {
+		System.out.println("props = "+props);
 		Properties current = new Properties();
 		
 		FileInputStream inStream = new FileInputStream( getFilename() );
@@ -40,9 +41,12 @@ public class settingsService<E> {
 		
 		Field fields[] = props.getClass().getDeclaredFields();
 		for(int i=0; i<fields.length; i++) {
-			String key = fields[i].getAnnotation(Property.class).key();
-			String value = props.getClass().getMethod("get"+caps(fields[i].getName())).invoke(props).toString();
-			current.setProperty(key, value);
+			if(fields[i].isAnnotationPresent(Property.class)) {
+				String key = fields[i].getAnnotation(Property.class).key();
+				String value = props.getClass().getMethod("get"+caps(fields[i].getName())).invoke(props).toString();
+				System.out.println(key+" = "+value);
+				current.setProperty(key, value);
+			}
 		}
 		
 		FileOutputStream outStream = new FileOutputStream( getFilename() );

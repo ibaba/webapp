@@ -11,12 +11,6 @@
   <body>
     <div class="container">
     	<div class="alert alert-info" role="alert"><strong>Erro</strong> ${erro.message}</div>
-    	
-    	<div class="jumbotron">
-    		<c:forEach var="item" items="${erro.stacktrace}">
-    			${item} <br/>
-    		</c:forEach>
-    	</div>
     </div>
     
     <!-- Bootstrap core JavaScript

@@ -7,9 +7,13 @@ import com.spring.config.annotation.form_control.Input;
 import com.spring.config.annotation.settings.Property;
 import com.spring.config.generic.persistence.Settings;
 
-@SuppressWarnings("serial")
 @FormSettings
 public class Geral extends Settings {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Input(label = "Titulo")
 	@Property(key = "geral.titulo")
