@@ -2,6 +2,7 @@ package com.spring.config.app;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Properties;
 
 import org.springframework.context.annotation.Bean;
@@ -27,9 +28,16 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     	PropertySourcesPlaceholderConfigurer propertyConfigurer = new PropertySourcesPlaceholderConfigurer();
     	
     	Properties props = new Properties();
-    	FileInputStream fos = new FileInputStream(System.getProperty("user.home")+File.separator+".webapp"+File.separator+"webapp.preferences");
-    	props.load(fos);
-    	propertyConfigurer.setProperties(props);
+    	File file = new File(System.getProperty("user.home")+File.separator+".webapp"+File.separator+"webapp.preferences");
+    	if(file.exists()) {
+        	FileInputStream fos = new FileInputStream( file.getAbsolutePath() );
+        	props.load(fos);
+        	propertyConfigurer.setProperties(props);
+    	} else {
+        	FileOutputStream fos = new FileOutputStream( file.getAbsoluteFile() );
+        	props.store(fos, "settings");
+        	propertyConfigurer.setProperties(props);
+    	}
     	
     	return propertyConfigurer;
     }
